@@ -111,7 +111,7 @@
       
 
       
-      <p>![Netty](IO/IO Stream.png)</p>
+      <h1 id="Netty相关介绍"><a href="#Netty相关介绍" class="headerlink" title="Netty相关介绍"></a>Netty相关介绍</h1><p>还没有想好怎么写中。。。</p>
 
       
       <!-- reward -->
@@ -249,8 +249,10 @@
       
 
       
-      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join</p>
-
+      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>[TOC]</p>
+<p>​       最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join进行中，今天决定整理一下Fork/Join；</p>
+<p>​      Fork/Join是一个编程框架，来自于JDK1.7，作者是大名鼎鼎的Doug Lea；意图是用分治解决问题，诸如归并排序和快速排序都可以使用Fork/Join框架去解决，可以说有人说他是单机的Map/Reduce；</p>
+<h2 id="How-to-use？"><a href="#How-to-use？" class="headerlink" title="How to use？"></a>How to use？</h2>
       
       <!-- reward -->
       
@@ -316,7 +318,8 @@
       
 
       
-      <figure class="highlight plain"><figcaption><span>输出GC日志</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-XX:+PrintGC 输出GC日志</span><br><span class="line">-XX:+PrintGCDetails 输出GC的详细日志</span><br><span class="line">-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）</span><br><span class="line">-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）</span><br><span class="line">-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息</span><br><span class="line">-Xloggc:..&#x2F;logs&#x2F;gc.log 日志文件的输出路径</span><br></pre></td></tr></table></figure>
+      <p>总结GC相关的知识；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这里的信息是各种VM参数用来调整GC的：</span><br><span class="line">-XX:+PrintGC 输出GC日志</span><br><span class="line">-XX:+PrintGCDetails 输出GC的详细日志</span><br><span class="line">-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）</span><br><span class="line">-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）</span><br><span class="line">-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息</span><br><span class="line">-Xloggc:..&#x2F;logs&#x2F;gc.log 日志文件的输出路径</span><br></pre></td></tr></table></figure>
 
 
       
@@ -384,11 +387,12 @@
       
 
       
-      <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTheOptional</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        A a=<span class="keyword">new</span> A();</span><br><span class="line"><span class="comment">//        System.out.println(a.b.c.num);</span></span><br><span class="line">        <span class="keyword">int</span> num=a.getB().map(B::getC).map(C::getNum).get().get();</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      <p>Optional类型是JDK8中新增的；今天我们来总结一下；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例代码</span><br><span class="line">@Test</span><br><span class="line">    public void testTheOptional()</span><br><span class="line">    &#123;</span><br><span class="line">        A a&#x3D;new A();</span><br><span class="line">&#x2F;&#x2F;        System.out.println(a.b.c.num);</span><br><span class="line">        int num&#x3D;a.getB().map(B::getC).map(C::getNum).get().get();</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;B&gt; <span class="title">getB</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> C c;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> C <span class="title">getC</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;Integer&gt; <span class="title">getNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Optional传递</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;B&gt; <span class="title">getB</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> C c;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> C <span class="title">getC</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;Integer&gt; <span class="title">getNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       <!-- reward -->
       
@@ -534,7 +538,7 @@
 <p>BloomFilter</p>
 <p>RedisSearch</p>
 <p>Redis-ML</p>
-
+<h2 id="2-Redis的操作"><a href="#2-Redis的操作" class="headerlink" title="2.Redis的操作"></a>2.Redis的操作</h2>
       
       <!-- reward -->
       

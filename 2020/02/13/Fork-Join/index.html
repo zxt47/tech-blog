@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">106字</span>
+            <span class="post-count">194字</span>
         </span>
     </span>
 
@@ -97,8 +97,10 @@
       
 
       
-      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join</p>
-
+      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>[TOC]</p>
+<p>​       最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join进行中，今天决定整理一下Fork/Join；</p>
+<p>​      Fork/Join是一个编程框架，来自于JDK1.7，作者是大名鼎鼎的Doug Lea；意图是用分治解决问题，诸如归并排序和快速排序都可以使用Fork/Join框架去解决，可以说有人说他是单机的Map/Reduce；</p>
+<h2 id="How-to-use？"><a href="#How-to-use？" class="headerlink" title="How to use？"></a>How to use？</h2>
       
       <!-- reward -->
       
