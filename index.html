@@ -72,6 +72,77 @@
     
     
     
+    <article id="post-IO" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/15/IO/"
+    >IO流</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/15/IO/" class="article-date">
+  <time datetime="2020-02-15T06:53:57.000Z" itemprop="datePublished">2020-02-15</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>[TOC]</p>
+<p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
+<h2 id="BIO（阻塞同步）"><a href="#BIO（阻塞同步）" class="headerlink" title="BIO（阻塞同步）"></a>BIO（阻塞同步）</h2><p>下图是BIO中最早的流类图，可以看到都实现了Closeable的接口，基于Stream实现，提供了我们最熟悉的IO功能，同步阻塞通信，在线程读或写时线程一直阻塞在那里；很多时候，人们把Socket,ServerSocket,HttpUrlConnection都分类到阻塞类库里；其中输入流和输出流其实是对字节做操作的，而Reader和Writer则是对字符做操作的；因为字符会存在编解码方式，例如UTF-8和GBK还有ISO-8859-1序列成ByteArray之后肯定是不一样的字节流的。</p>
+<p>![BIO类图](IO/IO Stream.png)</p>
+<h2 id="NIO（同步非阻塞IO）"><a href="#NIO（同步非阻塞IO）" class="headerlink" title="NIO（同步非阻塞IO）"></a>NIO（同步非阻塞IO）</h2><p>大名鼎鼎的NIO,Buffer和Selector和Channel都来自于1.4提出的NIO包;</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Fork-Join" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -396,85 +467,6 @@
 <p>BloomFilter</p>
 <p>RedisSearch</p>
 <p>Redis-ML</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/01/28/hello-world/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/01/28/hello-world/" class="article-date">
-  <time datetime="2020-01-28T05:05:08.316Z" itemprop="datePublished">2020-01-28</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
       <!-- reward -->
