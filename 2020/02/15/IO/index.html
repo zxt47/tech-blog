@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">228字</span>
+            <span class="post-count">221字</span>
         </span>
     </span>
 
@@ -100,7 +100,7 @@
       <p>[TOC]</p>
 <p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
 <h2 id="BIO（阻塞同步）"><a href="#BIO（阻塞同步）" class="headerlink" title="BIO（阻塞同步）"></a>BIO（阻塞同步）</h2><p>下图是BIO中最早的流类图，可以看到都实现了Closeable的接口，基于Stream实现，提供了我们最熟悉的IO功能，同步阻塞通信，在线程读或写时线程一直阻塞在那里；很多时候，人们把Socket,ServerSocket,HttpUrlConnection都分类到阻塞类库里；其中输入流和输出流其实是对字节做操作的，而Reader和Writer则是对字符做操作的；因为字符会存在编解码方式，例如UTF-8和GBK还有ISO-8859-1序列成ByteArray之后肯定是不一样的字节流的。</p>
-<p>![BIO类图](IO/IO Stream.png)</p>
+<p><img src="/tech-blog/tech-blog/2020/02/15/IO/IO.png" alt="IO Stream"></p>
 <h2 id="NIO（同步非阻塞IO）"><a href="#NIO（同步非阻塞IO）" class="headerlink" title="NIO（同步非阻塞IO）"></a>NIO（同步非阻塞IO）</h2><p>大名鼎鼎的NIO,Buffer和Selector和Channel都来自于1.4提出的NIO包;</p>
 
       
@@ -186,6 +186,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/tech-blog/2020/02/15/Netty%20Introduction/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Netty Introduction
+          
+        </div>
+      </a>
     
     
       <a href="/tech-blog/2020/02/13/Fork-Join/" class="article-nav-link">
