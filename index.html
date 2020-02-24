@@ -72,6 +72,138 @@
     
     
     
+    <article id="post-事务隔离和事务级别" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/23/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E5%92%8C%E4%BA%8B%E5%8A%A1%E7%BA%A7%E5%88%AB/"
+    >事务隔离和事务级别</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/23/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E5%92%8C%E4%BA%8B%E5%8A%A1%E7%BA%A7%E5%88%AB/" class="article-date">
+  <time datetime="2020-02-23T08:33:28.000Z" itemprop="datePublished">2020-02-23</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h1><h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h2 id="Spring的声明式事务"><a href="#Spring的声明式事务" class="headerlink" title="Spring的声明式事务"></a>Spring的声明式事务</h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Oracle和MySQL索引和索引底层" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/"
+    >Oracle和MySQL索引和索引底层</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/" class="article-date">
+  <time datetime="2020-02-23T08:33:07.000Z" itemprop="datePublished">2020-02-23</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Vertx介绍" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -289,7 +421,8 @@
       
       <h1 id="ThreadSafe-1-同步关键字和ReentrantLock"><a href="#ThreadSafe-1-同步关键字和ReentrantLock" class="headerlink" title="ThreadSafe-1-同步关键字和ReentrantLock"></a>ThreadSafe-1-同步关键字和ReentrantLock</h1><h2 id="What-is-synchronized"><a href="#What-is-synchronized" class="headerlink" title="What is synchronized?"></a>What is synchronized?</h2><h2 id="How-to-understand-it"><a href="#How-to-understand-it" class="headerlink" title="How to understand it?"></a>How to understand it?</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeSample</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span> sharedState;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nonSafeAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.err.println(<span class="string">"非线程安全"</span>);</span><br><span class="line">      <span class="keyword">while</span> (sharedState &lt; <span class="number">100000</span>) &#123;</span><br><span class="line">         <span class="keyword">int</span> former = sharedState++;</span><br><span class="line">         <span class="keyword">int</span> latter = sharedState;</span><br><span class="line">         <span class="keyword">if</span> (former != latter - <span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Observed data race, former is "</span> + former + <span class="string">", "</span></span><br><span class="line">                  + <span class="string">"latter is "</span> + latter);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">safeActionWithSync</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//class为锁,或者当前的this为锁</span></span><br><span class="line">        <span class="keyword">synchronized</span> (ThreadSafeSample<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">        </span>&#123;</span><br><span class="line">            System.err.println(<span class="string">"同步关键字"</span>);</span><br><span class="line">            <span class="keyword">while</span> (sharedState &lt; <span class="number">100000</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> former = sharedState++;</span><br><span class="line">                <span class="keyword">int</span> latter = sharedState;</span><br><span class="line">                <span class="keyword">if</span> (former != latter - <span class="number">1</span>) &#123;</span><br><span class="line">                    System.out.println(<span class="string">"Observed data race, former is "</span> + former + <span class="string">", "</span></span><br><span class="line">                            + <span class="string">"latter is "</span> + latter);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">      ThreadSafeSample sample = <span class="keyword">new</span> ThreadSafeSample();</span><br><span class="line">      Thread threadA = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            sample.nonSafeAction();</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      Thread threadB = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            sample.nonSafeAction();</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      threadA.start();</span><br><span class="line">      threadB.start();</span><br><span class="line">      threadA.join();</span><br><span class="line">      threadB.join();</span><br><span class="line">      System.out.println(<span class="string">"---------------------------------分割线"</span>);</span><br><span class="line">        sample.sharedState=<span class="number">0</span>;</span><br><span class="line">      threadA =<span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">          sample.safeActionWithSync();</span><br><span class="line">        &#125;);</span><br><span class="line">      threadB =<span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">          sample.safeActionWithSync();</span><br><span class="line">        &#125;);</span><br><span class="line">        threadA.start();</span><br><span class="line">        threadB.start();</span><br><span class="line">        threadA.join();</span><br><span class="line">        threadB.join();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h2><h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2>
+<h2 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h2><h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>Java 1.5中Doug Lea提出的JDK新实现的可重入锁</p>
+
       
       <!-- reward -->
       
@@ -622,148 +755,6 @@
 
       
       <h1 id="Netty相关介绍"><a href="#Netty相关介绍" class="headerlink" title="Netty相关介绍"></a>Netty相关介绍</h1><p>还没有想好怎么写中。。。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-IO" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/15/IO/"
-    >IO流</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/15/IO/" class="article-date">
-  <time datetime="2020-02-15T06:53:57.000Z" itemprop="datePublished">2020-02-15</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>[TOC]</p>
-<p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
-<h2 id="BIO（阻塞同步）"><a href="#BIO（阻塞同步）" class="headerlink" title="BIO（阻塞同步）"></a>BIO（阻塞同步）</h2><p>下图是BIO中最早的流类图，可以看到都实现了Closeable的接口，基于Stream实现，提供了我们最熟悉的IO功能，同步阻塞通信，在线程读或写时线程一直阻塞在那里；很多时候，人们把Socket,ServerSocket,HttpUrlConnection都分类到阻塞类库里；其中输入流和输出流其实是对字节做操作的，而Reader和Writer则是对字符做操作的；因为字符会存在编解码方式，例如UTF-8和GBK还有ISO-8859-1序列成ByteArray之后肯定是不一样的字节流的。</p>
-<p><img src="IO.png" alt="IO Stream"></p>
-<h2 id="NIO（同步非阻塞IO）"><a href="#NIO（同步非阻塞IO）" class="headerlink" title="NIO（同步非阻塞IO）"></a>NIO（同步非阻塞IO）</h2><p>大名鼎鼎的NIO,Buffer和Selector和Channel都来自于1.4提出的NIO包;</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Fork-Join" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/13/Fork-Join/"
-    >Fork/Join</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/13/Fork-Join/" class="article-date">
-  <time datetime="2020-02-13T06:48:47.000Z" itemprop="datePublished">2020-02-13</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>[TOC]</p>
-<p>​       最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join进行中，今天决定整理一下Fork/Join；</p>
-<p>​      Fork/Join是一个编程框架，来自于JDK1.7，作者是大名鼎鼎的Doug Lea；意图是用分治解决问题，诸如归并排序和快速排序都可以使用Fork/Join框架去解决，可以说有人说他是单机的Map/Reduce；</p>
-<h2 id="How-to-use？"><a href="#How-to-use？" class="headerlink" title="How to use？"></a>How to use？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处的RecursiveTask是一个递归任务，继承自ForkJoinTask</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySumTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySumTask</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = array;</span><br><span class="line">        <span class="keyword">this</span>.begin = begin;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Long <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (end - begin + <span class="number">1</span> &lt; THRESHOLD) &#123; <span class="comment">// 小于阈值, 直接计算</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; i++) &#123;</span><br><span class="line">                sum += array[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> middle = (end + begin) / <span class="number">2</span>;</span><br><span class="line">            ArraySumTask subtask1 = <span class="keyword">new</span> ArraySumTask(<span class="keyword">this</span>.array, begin, middle);</span><br><span class="line">            ArraySumTask subtask2 = <span class="keyword">new</span> ArraySumTask(<span class="keyword">this</span>.array, middle + <span class="number">1</span>, end);</span><br><span class="line">            subtask1.fork();</span><br><span class="line">            subtask2.fork();</span><br><span class="line">            <span class="keyword">long</span> sum1 = subtask1.join();</span><br><span class="line">            <span class="keyword">long</span> sum2 = subtask2.join();</span><br><span class="line">            sum = sum1 + sum2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ForkJoinPool executor = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">        ArraySumTask task = <span class="keyword">new</span> ArraySumTask(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10000</span>], <span class="number">0</span>, <span class="number">9999</span>);</span><br><span class="line">        ForkJoinTask future = executor.submit(task);</span><br><span class="line">        <span class="comment">// some time passed...</span></span><br><span class="line">        <span class="keyword">if</span> (future.isCompletedAbnormally()) &#123;</span><br><span class="line">            System.out.println(future.getException());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"result: "</span> + future.get());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 
       
       <!-- reward -->
