@@ -72,6 +72,79 @@
     
     
     
+    <article id="post-Monitor-DB-Connection" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/26/Monitor-DB-Connection/"
+    >Monitor DB Connection</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/26/Monitor-DB-Connection/" class="article-date">
+  <time datetime="2020-02-26T14:14:12.000Z" itemprop="datePublished">2020-02-26</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Monitor-DB-Connections"><a href="#Monitor-DB-Connections" class="headerlink" title="Monitor DB Connections"></a>Monitor DB Connections</h1><p>最近一直在解决各种问题，发现最近一直出现数据库Lock的问题，说句老实话，不论是使用Druid还是Hikari，都有各种各样的监控手段；</p>
+<h2 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h2><p>Alibaba Druid，当初温少设计这个连接池的目的就在于其具有的强大的监控的性能；但是发现现在的项目并没有很好地使用上，所以准备在新的1.8改造上试验一下；</p>
+<p><a href="https://www.jianshu.com/p/e84e2709f383" target="_blank" rel="noopener">https://www.jianshu.com/p/e84e2709f383</a></p>
+<h2 id="Hikari"><a href="#Hikari" class="headerlink" title="Hikari"></a>Hikari</h2><p>Hikari作为Spring Boot默认的连接池，其本身是支持HealthCheck的；</p>
+<p><a href="https://github.com/brettwooldridge/HikariCP/wiki/Dropwizard-HealthChecks" target="_blank" rel="noopener">https://github.com/brettwooldridge/HikariCP/wiki/Dropwizard-HealthChecks</a></p>
+<p><a href="https://stackoverflow.com/questions/28615203/how-do-i-configure-hikaricp-and-dropwizard-coda-hale-metrics-in-spring-boot-appl" target="_blank" rel="noopener">https://stackoverflow.com/questions/28615203/how-do-i-configure-hikaricp-and-dropwizard-coda-hale-metrics-in-spring-boot-appl</a></p>
+<p><a href="https://stackoverflow.com/questions/50770462/springboot-2-monitor-db-connection" target="_blank" rel="noopener">https://stackoverflow.com/questions/50770462/springboot-2-monitor-db-connection</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-事务隔离和事务级别" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -688,73 +761,6 @@
 
       
       <h1 id="JMX介绍"><a href="#JMX介绍" class="headerlink" title="JMX介绍"></a>JMX介绍</h1><p>参考网址：<a href="https://docs.spring.io/spring-framework/docs/5.0.4.RELEASE/spring-framework-reference/integration.html#jmx" target="_blank" rel="noopener">https://docs.spring.io/spring-framework/docs/5.0.4.RELEASE/spring-framework-reference/integration.html#jmx</a></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Netty Introduction" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/15/Netty%20Introduction/"
-    >Netty Introduction</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/15/Netty%20Introduction/" class="article-date">
-  <time datetime="2020-02-15T07:52:24.000Z" itemprop="datePublished">2020-02-15</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Netty相关介绍"><a href="#Netty相关介绍" class="headerlink" title="Netty相关介绍"></a>Netty相关介绍</h1><p>还没有想好怎么写中。。。</p>
 
       
       <!-- reward -->
