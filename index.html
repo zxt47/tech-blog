@@ -72,6 +72,72 @@
     
     
     
+    <article id="post-集合框架" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/28/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"
+    >集合框架</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/28/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2020-02-28T14:12:05.000Z" itemprop="datePublished">2020-02-28</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Redis-Sentinal和Cluster" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -111,7 +177,8 @@
       
 
       
-      
+      <h1 id="Redis-Sentinal和Cluster"><a href="#Redis-Sentinal和Cluster" class="headerlink" title="Redis Sentinal和Cluster"></a>Redis Sentinal和Cluster</h1><p>Sentinal(哨兵)是用来保证Redis高可用的技术，同样，cluster也是一个保证Redis高可用的技术；</p>
+
       
       <!-- reward -->
       
@@ -255,6 +322,8 @@
 <p>类似String的intern()</p>
 <h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存是在NIO中主要使用的，目的是为了提升NIO在Native堆和Java堆中互相切换的开销</p>
 <h3 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h3><p>Thread Local Allocation Buffer，每个线程拥有的一小部分，一般是在分配对象的时候，除去经过逃逸分析可以解决在栈上分配的问题之外，还支持在线程私有缓冲中分配对象。之后再考虑是在老年代还是Eden区域分配；</p>
+<h4 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h4><p>基础类 Object 的一个方法，保证对象在被垃圾收集前完成特定的资源回收。由于 finalize 执行时间不确定且可能造成程序死锁、拖慢垃圾收集等问题，Java 9 中将改方法废弃.</p>
+<p>优化：逐步用Cleaner来替换调原有的finalize实现。</p>
 <blockquote>
 <p>参考资料</p>
 <p><a href="https://www.hollischuang.com/archives/2398" target="_blank" rel="noopener">https://www.hollischuang.com/archives/2398</a></p>
@@ -711,72 +780,6 @@
 <h2 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h2><p>同步关键字的底层实现</p>
 <h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>Java 1.5中Doug Lea提出的JDK新实现的可重入锁</p>
 
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-AQS-Eins-Introduction" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/17/AQS-Eins-Introduction/"
-    >AQS Eins-Introduction</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/17/AQS-Eins-Introduction/" class="article-date">
-  <time datetime="2020-02-17T13:49:00.000Z" itemprop="datePublished">2020-02-17</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
       
       <!-- reward -->
       
