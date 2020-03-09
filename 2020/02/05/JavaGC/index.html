@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">178字</span>
+            <span class="post-count">309字</span>
         </span>
     </span>
 
@@ -107,6 +107,8 @@
 <li>引用计数算法</li>
 <li>可达性分析算法</li>
 </ol>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>与标记-清除算法相比，复制算法是一种相对高效的回收方法，不适用于存活对象较多的场合-如老年代；</p>
+<p>将原有的内存空间分为两块，每次只使用其中一块，在垃圾回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后清除正在使用的内存块中的所有对象，交换两个内存的角色，完成垃圾回收；</p>
 <h3 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h3><p>VM Stack中引用指针</p>
 <p>方法区中静态属性的指针</p>
 <p>方法区中常量对象</p>

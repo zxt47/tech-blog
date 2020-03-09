@@ -72,6 +72,73 @@
     
     
     
+    <article id="post-分布式ID生成算法" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/03/06/%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"
+    >分布式ID生成算法</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/03/06/%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-06T07:00:00.000Z" itemprop="datePublished">2020-03-06</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="分布式ID生成方案"><a href="#分布式ID生成方案" class="headerlink" title="分布式ID生成方案"></a>分布式ID生成方案</h1><p>最近有人开始问我分布式ID的生成问题，我们现在主要使用的是UUID生成方案，但是UUID的问题是冲突虽然比较小，但是他的字符串占用的空间比较大，如果是UTF-8编码的话，就需要占用32*3=96个字节；而且生成的ID太过于随机，完全不是人读的，而且没有递增，如果要按前后顺序排序的话，基本不可能；</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Docker-And-K8S" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -118,7 +185,7 @@
 <h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
 <p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
 <p>和Kubernetes的区别：</p>
-<p><img src="Docker-And-K8S%5COpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
+<p><img src="OpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>使用Docker能够将程序的运行时及其它依赖环境提取出来形成一个隔离的运行环境——image，实现了应用程序的容器化运行。而Kubernetes能够管理和编排已经容器化了的应用，提供容器化应用的部署、扩展和管理等功能。OpenShift在Kubernetes容器管理的基础上，整合了应用程序的生命周期管理，包括image的编译，持续集成，部署和更新等功能。如果仅限于了解和使用，上面这些信息对我来说就足够了，接下来的时间还是回到正文的翻译中去吧。</strong></p>
 <blockquote>
 <p>参考资料：</p>
@@ -198,9 +265,16 @@
       
 
       
-      <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>RPC的全拼叫做Remote Procedure Call，远程过程调用；</p>
+      <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>RPC的全拼叫做Remote Procedure Call，远程过程调用；RPC的最大特点就是可以让我们像调用本地方法一样发起远程调用。做任何事情都应该  Start with Why，那我们就先来说说为什么要学习 RPC。要回答这个问题，我们就得先考虑下 RPC 的实际应用场景。说到 RPC，可能你的第一反应就是“微服务”。RPC 最大的特点就是可以让我们像调用本地一样发起远程调用，这一特点常常会让人感觉 RPC 就是为“微服务”或 SOA 而生的。现在的大多数应用系统发展到一定规模之后，都会向“微服务化”演进，演进后的大型应用系统也的确是由一个个“微服务”组成的。我们可以说 RPC 是“微服务”的基础，这一点是毋庸置疑的。现在我们就可以反过来想这样一个问题——RPC 是不是只应用在“微服务”中呢？</p>
+<p>当然不是，只要涉及到网络通信，我们就可能用到 RPC。一起看这样两个例子。</p>
+<p>例 1：大型分布式应用系统可能会依赖消息队列、分布式缓存、分布式数据库以及统一配置中心等，应用程序与依赖的这些中间件之间都可以通过 RPC 进行通信。比如 etcd，它作为一个统一的配置服务，客户端就是通过 gRPC 框架与服务端进行通信的。</p>
+<p>例 2：我们经常会谈到的容器编排引擎 Kubernetes，它本身就是分布式的，Kubernetes 的 kube-apiserver 与整个分布式集群中的每个组件间的通讯，都是通过 gRPC 框架进行的。</p>
+<p>在我看来，RPC 是解决分布式系统通信问题的一大利器。分布式系统中的网络通信一般都会采用四层的 TCP 协议或七层的 HTTP 协议，在我的了解中，前者占大多数，这主要得益于 TCP 协议的稳定性和高效性。网络通信说起来简单，但实际上是一个非常复杂的过程，这个过程主要包括：对端节点的查找、网络连接的建立、传输数据的编码解码以及网络连接的管理等等，每一项都很复杂。你可以想象一下，在搭建一个复杂的分布式系统过程中，如果开发人员在编码时要对每个涉及到网络通信的逻辑都进行一系列的复杂编码，这将是件多么恐怖的事儿。所以说，网络通信是搭建分布式系统的一个大难题，是一点不为过的，我们必须给予足够的重视。而 RPC 对网络通信的整个过程做了完整包装，在搭建分布式系统时，它会使网络通信逻辑的开发变得更加简单，同时也会让网络通信变得更加安全可靠。现在你是不是感觉到学好 RPC 是很有必要的？</p>
+<p>说起来也特别简单。当我们认识到，使用 RPC 就可以像调用本地一样发起远程调用，用它可以解决通信问题，这时候我们肯定要去学序列化、编解码以及网络传输这些内容。把这些内容掌握后，你就会发现，原来这些只是 RPC 的基础，RPC 还有更吸引人的点，它真正强大的地方是它的治理功能，比如<strong>连接管理、健康检测、负载均衡、优雅启停机、异常重试、业务分组以及熔断限流</strong>等等。突然间，你会感觉自己走进了一个新世界，这些内容会成为你今后学习 RPC 的重点和难点。</p>
+<blockquote>
 <p>参考资料</p>
 <p><a href="https://www.cnblogs.com/findbetterme/p/11200999.html" target="_blank" rel="noopener">https://www.cnblogs.com/findbetterme/p/11200999.html</a></p>
+</blockquote>
 
       
       <!-- reward -->
@@ -710,72 +784,6 @@
 
       
       <h1 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h1><h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h2 id="Spring的声明式事务"><a href="#Spring的声明式事务" class="headerlink" title="Spring的声明式事务"></a>Spring的声明式事务</h2>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Oracle和MySQL索引和索引底层" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/"
-    >Oracle和MySQL索引和索引底层</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/" class="article-date">
-  <time datetime="2020-02-23T08:33:07.000Z" itemprop="datePublished">2020-02-23</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      
       
       <!-- reward -->
       
