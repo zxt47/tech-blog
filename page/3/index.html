@@ -72,6 +72,148 @@
     
     
     
+    <article id="post-Oracle和MySQL索引和索引底层" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/"
+    >Oracle和MySQL索引和索引底层</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/" class="article-date">
+  <time datetime="2020-02-23T08:33:07.000Z" itemprop="datePublished">2020-02-23</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="Oracle支持的全部索引"><a href="#Oracle支持的全部索引" class="headerlink" title="Oracle支持的全部索引"></a>Oracle支持的全部索引</h2><h2 id="MySQL支持的全部索引"><a href="#MySQL支持的全部索引" class="headerlink" title="MySQL支持的全部索引"></a>MySQL支持的全部索引</h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Vertx介绍" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/"
+    >Vertx介绍</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time datetime="2020-02-21T13:08:12.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="1-Vertx介绍"><a href="#1-Vertx介绍" class="headerlink" title="1.Vertx介绍"></a>1.Vertx介绍</h1><h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>为什么要开一个关于Vertx的介绍呢，是因为最近在转公司的微服务平台的时候，发现使用了大量的Netty相关的技术，但是后来发现从Netty的ChannelHandler的过程中公司使用了新的框架，Vertx；在代码中创建了一个VertxHandler；这提起来我的兴趣，为什么这里要设置一个VertxHandler呢？而不是选择属于Netty的其他HTTP Handler呢？所以我们讲一下什么是Vertx？如果对Netty感兴趣的话，欢迎看我的其他专栏-其他专栏会讲跟Netty相关的知识；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Netty中的AbstractChannelHandlerContext</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeChannelRead</span><span class="params">(Object msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.invokeHandler()) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ((ChannelInboundHandler)<span class="keyword">this</span>.handler()).channelRead(<span class="keyword">this</span>, msg);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">this</span>.notifyHandlerException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fireChannelRead(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公司自己实现的VertxHandler，可以看到是继承了ChannelDuplexHandler的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">VertxHandler</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">ConnectionBase</span>&gt; <span class="keyword">extends</span> <span class="title">ChannelDuplexHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Handler&lt;Object&gt; NULL_HANDLER = (m) -&gt; &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Function&lt;ChannelHandlerContext, C&gt; connectionFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ContextInternal context;</span><br><span class="line">    <span class="keyword">private</span> C conn;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; addHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; removeHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;Object&gt; messageHandler;</span><br></pre></td></tr></table></figure>
+
+<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>Netty的HTTP:<a href="https://www.cnblogs.com/luxiaoxun/p/3959450.html" target="_blank" rel="noopener">https://www.cnblogs.com/luxiaoxun/p/3959450.html</a></p>
+<p>Baledung:<a href="https://www.baeldung.com/vertx" target="_blank" rel="noopener">https://www.baeldung.com/vertx</a></p>
+<p><a href="https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers" target="_blank" rel="noopener">https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers</a></p>
+<p><a href="https://stackoverflow.com/questions/49746420/how-vertx-handlers-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/49746420/how-vertx-handlers-work</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-HTTP请求和响应报文" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -668,159 +810,6 @@
 <p>AIO，快递员通知你有一份快递会送到你公司的前台，并且前台收到后会给你打电话通知你过来取。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>UNIX网络编程</p>
 <p>我的专栏中的Netty部分和其他相关网络编程相关demo;    </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Fork-Join" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/13/Fork-Join/"
-    >Fork/Join</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/13/Fork-Join/" class="article-date">
-  <time datetime="2020-02-13T06:48:47.000Z" itemprop="datePublished">2020-02-13</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Frok-Join"><a href="#Frok-Join" class="headerlink" title="Frok/Join"></a>Frok/Join</h1><p>[TOC]</p>
-<p>​       最近有些同事问我了一下Fork/Join的问题，发现当时只是使用了一下Fork/Join框架，并没有意识到其中的一些问题；比如说如果其中有一个IO密集的操作的情况下，会不会影响整个ForkJoinPool的效率，或者说在分解过程中某一个子线程任务出现了Block；会不会影响整个Fork/Join进行中，今天决定整理一下Fork/Join；</p>
-<p>​      Fork/Join是一个编程框架，来自于JDK1.7，作者是大名鼎鼎的Doug Lea；意图是用分治解决问题，诸如归并排序和快速排序都可以使用Fork/Join框架去解决，可以说有人说他是单机的Map/Reduce；</p>
-<h2 id="How-to-use？"><a href="#How-to-use？" class="headerlink" title="How to use？"></a>How to use？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处的RecursiveTask是一个递归任务，继承自ForkJoinTask</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySumTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArraySumTask</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = array;</span><br><span class="line">        <span class="keyword">this</span>.begin = begin;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Long <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (end - begin + <span class="number">1</span> &lt; THRESHOLD) &#123; <span class="comment">// 小于阈值, 直接计算</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; i++) &#123;</span><br><span class="line">                sum += array[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> middle = (end + begin) / <span class="number">2</span>;</span><br><span class="line">            ArraySumTask subtask1 = <span class="keyword">new</span> ArraySumTask(<span class="keyword">this</span>.array, begin, middle);</span><br><span class="line">            ArraySumTask subtask2 = <span class="keyword">new</span> ArraySumTask(<span class="keyword">this</span>.array, middle + <span class="number">1</span>, end);</span><br><span class="line">            subtask1.fork();</span><br><span class="line">            subtask2.fork();</span><br><span class="line">            <span class="keyword">long</span> sum1 = subtask1.join();</span><br><span class="line">            <span class="keyword">long</span> sum2 = subtask2.join();</span><br><span class="line">            sum = sum1 + sum2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ForkJoinPool executor = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">        ArraySumTask task = <span class="keyword">new</span> ArraySumTask(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10000</span>], <span class="number">0</span>, <span class="number">9999</span>);</span><br><span class="line">        ForkJoinTask future = executor.submit(task);</span><br><span class="line">        <span class="comment">// some time passed...</span></span><br><span class="line">        <span class="keyword">if</span> (future.isCompletedAbnormally()) &#123;</span><br><span class="line">            System.out.println(future.getException());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"result: "</span> + future.get());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-JavaGC" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/05/JavaGC/"
-    >JavaGC</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/05/JavaGC/" class="article-date">
-  <time datetime="2020-02-05T13:36:43.000Z" itemprop="datePublished">2020-02-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>总结GC相关的知识；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这里的信息是各种VM参数用来调整GC的：</span><br><span class="line">-XX:+PrintGC 输出GC日志</span><br><span class="line">-XX:+PrintGCDetails 输出GC的详细日志</span><br><span class="line">-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）</span><br><span class="line">-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）</span><br><span class="line">-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息</span><br><span class="line">-Xloggc:..&#x2F;logs&#x2F;gc.log 日志文件的输出路径</span><br></pre></td></tr></table></figure>
-
-<h2 id="GC相关的算法"><a href="#GC相关的算法" class="headerlink" title="GC相关的算法"></a>GC相关的算法</h2><ol>
-<li>复制算法</li>
-<li>标记清除算法</li>
-<li>标记交换算法</li>
-<li>引用计数算法</li>
-<li>可达性分析算法</li>
-</ol>
-<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>与标记-清除算法相比，复制算法是一种相对高效的回收方法，不适用于存活对象较多的场合-如老年代；</p>
-<p>将原有的内存空间分为两块，每次只使用其中一块，在垃圾回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后清除正在使用的内存块中的所有对象，交换两个内存的角色，完成垃圾回收；</p>
-<h3 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h3><p>VM Stack中引用指针</p>
-<p>方法区中静态属性的指针</p>
-<p>方法区中常量对象</p>
-<p>Native的对象</p>
 
       
       <!-- reward -->

@@ -72,6 +72,160 @@
     
     
     
+    <article id="post-分布式ID生成算法" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/03/06/%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/"
+    >分布式ID生成算法</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/03/06/%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-06T07:00:00.000Z" itemprop="datePublished">2020-03-06</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="分布式ID生成方案"><a href="#分布式ID生成方案" class="headerlink" title="分布式ID生成方案"></a>分布式ID生成方案</h1><p>最近有人开始问我分布式ID的生成问题，我们现在主要使用的是UUID生成方案，但是UUID的问题是冲突虽然比较小，但是他的字符串占用的空间比较大，如果是UTF-8编码的话，就需要占用32*3=96个字节；而且生成的ID太过于随机，完全不是人读的，而且没有递增，如果要按前后顺序排序的话，基本不可能；</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Docker-And-K8S" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/03/05/Docker-And-K8S/"
+    >Docker And K8S</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/03/05/Docker-And-K8S/" class="article-date">
+  <time datetime="2020-03-05T13:20:47.000Z" itemprop="datePublished">2020-03-05</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker ps</span><br><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">//删除镜像</span><br><span class="line">docker rmi</span><br><span class="line">docker rmi $(docker images | grep ``<span class="string">"^"</span>` `| awk ``<span class="string">"&#123;print $3&#125;"</span>``)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>占位符</p>
+<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>容器编排系统</p>
+<h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
+<p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
+<p>和Kubernetes的区别：</p>
+<p><img src="OpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>使用Docker能够将程序的运行时及其它依赖环境提取出来形成一个隔离的运行环境——image，实现了应用程序的容器化运行。而Kubernetes能够管理和编排已经容器化了的应用，提供容器化应用的部署、扩展和管理等功能。OpenShift在Kubernetes容器管理的基础上，整合了应用程序的生命周期管理，包括image的编译，持续集成，部署和更新等功能。如果仅限于了解和使用，上面这些信息对我来说就足够了，接下来的时间还是回到正文的翻译中去吧。</strong></p>
+<blockquote>
+<p>参考资料：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
+<p><a href="https://linoxide.com/linux-how-to/dockerfile-create-docker-container/" target="_blank" rel="noopener">https://linoxide.com/linux-how-to/dockerfile-create-docker-container/</a></p>
+<p><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php" target="_blank" rel="noopener">http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php</a></p>
+<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Docker" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Docker</a></p>
+<p>//推荐</p>
+<p><a href="https://yeasy.gitbooks.io/docker_practice/introduction/why.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/introduction/why.html</a></p>
+<p>官方网站</p>
+<p><a href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf" target="_blank" rel="noopener">https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf</a></p>
+<p><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/" target="_blank" rel="noopener">https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-RPC" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -194,12 +348,14 @@
 <p>这样出来的就是隐式的内连接，没有INNER JOIN，行成的中间表为两个表的笛卡尔积；</p>
 <h3 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h3><p>笛卡尔积是指在数学中，两个集合X和Y的笛卡尓积（Cartesian product），又称直积，表示为X × Y，第一个对象是X的成员而第二个对象是Y的所有可能有序对的其中一个成员。假设集合A={a, b}，集合B={0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}。</p>
 <h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>外连接分为左外连接和右外连接和全外连接；</p>
+<h3 id="SQL92和SQL99的标准"><a href="#SQL92和SQL99的标准" class="headerlink" title="SQL92和SQL99的标准"></a>SQL92和SQL99的标准</h3><blockquote>
 <p>参考资料：</p>
 <p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
 <p><a href="http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html" target="_blank" rel="noopener">http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html</a></p>
 <p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
 <p><a href="https://blog.csdn.net/plg17/article/details/78758593" target="_blank" rel="noopener">https://blog.csdn.net/plg17/article/details/78758593</a></p>
 <p><a href="https://www.cnblogs.com/bluedeblog/p/6654065.html" target="_blank" rel="noopener">https://www.cnblogs.com/bluedeblog/p/6654065.html</a></p>
+</blockquote>
 
       
       <!-- reward -->
@@ -267,7 +423,7 @@
 
       
       <h1 id="Java集合框架"><a href="#Java集合框架" class="headerlink" title="Java集合框架"></a>Java集合框架</h1><p>List,Set,Stack,Queue,Map</p>
-
+<h2 id="ArrayList或者LinkedList"><a href="#ArrayList或者LinkedList" class="headerlink" title="ArrayList或者LinkedList"></a>ArrayList或者LinkedList</h2><h2 id="HashSet或者TreeSet"><a href="#HashSet或者TreeSet" class="headerlink" title="HashSet或者TreeSet"></a>HashSet或者TreeSet</h2>
       
       <!-- reward -->
       
@@ -640,148 +796,6 @@
 <h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><p>Oracle的默认事务隔离级别是读未提交；</p>
 <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>MySQL默认的事务隔离是可重复读；</p>
 <h2 id="Spring的声明式事务"><a href="#Spring的声明式事务" class="headerlink" title="Spring的声明式事务"></a>Spring的声明式事务</h2><p>Spring的声明式事务和Hibernate中的Open Session In View（在Spring JPA中介绍）。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Oracle和MySQL索引和索引底层" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/"
-    >Oracle和MySQL索引和索引底层</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/23/Oracle%E5%92%8CMySQL%E7%B4%A2%E5%BC%95%E5%92%8C%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82/" class="article-date">
-  <time datetime="2020-02-23T08:33:07.000Z" itemprop="datePublished">2020-02-23</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h2 id="Oracle支持的全部索引"><a href="#Oracle支持的全部索引" class="headerlink" title="Oracle支持的全部索引"></a>Oracle支持的全部索引</h2><h2 id="MySQL支持的全部索引"><a href="#MySQL支持的全部索引" class="headerlink" title="MySQL支持的全部索引"></a>MySQL支持的全部索引</h2>
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Vertx介绍" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/"
-    >Vertx介绍</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time datetime="2020-02-21T13:08:12.000Z" itemprop="datePublished">2020-02-21</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="1-Vertx介绍"><a href="#1-Vertx介绍" class="headerlink" title="1.Vertx介绍"></a>1.Vertx介绍</h1><h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>为什么要开一个关于Vertx的介绍呢，是因为最近在转公司的微服务平台的时候，发现使用了大量的Netty相关的技术，但是后来发现从Netty的ChannelHandler的过程中公司使用了新的框架，Vertx；在代码中创建了一个VertxHandler；这提起来我的兴趣，为什么这里要设置一个VertxHandler呢？而不是选择属于Netty的其他HTTP Handler呢？所以我们讲一下什么是Vertx？如果对Netty感兴趣的话，欢迎看我的其他专栏-其他专栏会讲跟Netty相关的知识；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Netty中的AbstractChannelHandlerContext</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeChannelRead</span><span class="params">(Object msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.invokeHandler()) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ((ChannelInboundHandler)<span class="keyword">this</span>.handler()).channelRead(<span class="keyword">this</span>, msg);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">this</span>.notifyHandlerException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fireChannelRead(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公司自己实现的VertxHandler，可以看到是继承了ChannelDuplexHandler的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">VertxHandler</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">ConnectionBase</span>&gt; <span class="keyword">extends</span> <span class="title">ChannelDuplexHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Handler&lt;Object&gt; NULL_HANDLER = (m) -&gt; &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Function&lt;ChannelHandlerContext, C&gt; connectionFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ContextInternal context;</span><br><span class="line">    <span class="keyword">private</span> C conn;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; addHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; removeHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;Object&gt; messageHandler;</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><hr>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>Netty的HTTP:<a href="https://www.cnblogs.com/luxiaoxun/p/3959450.html" target="_blank" rel="noopener">https://www.cnblogs.com/luxiaoxun/p/3959450.html</a></p>
-<p>Baledung:<a href="https://www.baeldung.com/vertx" target="_blank" rel="noopener">https://www.baeldung.com/vertx</a></p>
-<p><a href="https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers" target="_blank" rel="noopener">https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers</a></p>
-<p><a href="https://stackoverflow.com/questions/49746420/how-vertx-handlers-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/49746420/how-vertx-handlers-work</a></p>
 
       
       <!-- reward -->
