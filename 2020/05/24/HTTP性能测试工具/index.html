@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Validation |  Frank Zhou的博客
+    HTTP性能测试工具 |  Frank Zhou的博客
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -33,7 +33,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="bean-Validation" class="article article-type-bean" itemscope
+  <article id="post-HTTP性能测试工具" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -41,7 +41,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Validation
+  HTTP性能测试工具
 </h1>
   
 
@@ -50,8 +50,8 @@
 
     
     <div class="article-meta">
-      <a href="/tech-blog/2020/05/19/Validation/" class="article-date">
-  <time datetime="2020-05-19T13:12:39.000Z" itemprop="datePublished">2020-05-19</time>
+      <a href="/tech-blog/2020/05/24/HTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time datetime="2020-05-24T02:10:16.000Z" itemprop="datePublished">2020-05-24</time>
 </a>
       
       
@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">180字</span>
+            <span class="post-count">227字</span>
         </span>
     </span>
 
@@ -97,14 +97,16 @@
       
 
       
-      <h1 id="Bean-Validate-API"><a href="#Bean-Validate-API" class="headerlink" title="Bean Validate API"></a>Bean Validate API</h1><p>在接口开发中有一种较为方便的对Bean参数进行合法性校验的操作。在Java规范中是作为JSR303和JSR380规范存在的；</p>
+      <h1 id="HTTP性能测试工具"><a href="#HTTP性能测试工具" class="headerlink" title="HTTP性能测试工具"></a>HTTP性能测试工具</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>什么是HTTP性能测试工具，包含类似于ab(Apache BenchMark工具)，Wrk（只能在Unix环境上使用）这些可以进行性能测试的工具；不会像LoadRunner或者Jmeter那种较重的性能测试工具，ab只需要进行简单的配置就可以直接使用；</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ab工具放在Apache HTTP Server安装包的bin目录下，所以要先安装Apache HTTP Server（以Windows系统为例）。</p>
+<p>到Apache HTTP Server官网下载页面（<a href="https://link.jianshu.com?t=http://httpd.apache.org/download.cgi#apache24" target="_blank" rel="noopener">点击链接</a>），目前最新的版本不提供Windows系统下的安装包，所以用第三方的安装包。点击下图链接：</p>
+<p>选择进入到Apache的Haus，下载之后配置环境变量就可以直接使用了；</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p><img src="E:%5Ctech-blog%5Csource_posts%5CHTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%5Cimage-20200524101537116.png" alt="image-20200524101537116"></p>
 <p>参考文档</p>
-<p><a href="https://www.cnblogs.com/didispace/p/11633661.html" target="_blank" rel="noopener">技术博客</a></p>
-<p><a href="https://blog.csdn.net/f641385712/article/details/97968775" target="_blank" rel="noopener">https://blog.csdn.net/f641385712/article/details/97968775</a></p>
-<p><a href="https://blog.csdn.net/mzh_cn/article/details/80637015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/mzh_cn/article/details/80637015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
-<p><a href="https://blog.csdn.net/u013815546/article/details/77248003?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/u013815546/article/details/77248003?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase</a></p>
-<p><a href="https://blog.csdn.net/f641385712/article/details/97270786" target="_blank" rel="noopener">https://blog.csdn.net/f641385712/article/details/97270786</a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3OTUzMzcwNw==&amp;mid=2247484396&amp;idx=1&amp;sn=f6b73fbb6dd2d107e5b1bfde16cd6754&amp;chksm=eb470208dc308b1e32fc37b067e74d4a83857e2e966653bd11001726e08b860e9b8823b8029f&amp;scene=126&amp;sessionid=1589765413&amp;key=d0a1cff4a53ee366b6a3b9db4463a81c57f0a31df7c674d69da5c1e68fd9ac41541c57f4ff9aad6d561ed132b7f24e97f92e1a2561906b3375ca9013ffb78ef22da17f8524ed188eb9250016b78895d8&amp;ascene=1&amp;uin=MjIwMjY1NzQ2Mw%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AfSw7wIOssnlM2H1lkDUY0M%3D&amp;pass_ticket=WapZN1mC7IMHiY8PyF4qiSKWo9tWf593g%2F80CUEj2tevTdAHcfeQ97NwcQJIJWww" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI3OTUzMzcwNw==&amp;mid=2247484396&amp;idx=1&amp;sn=f6b73fbb6dd2d107e5b1bfde16cd6754&amp;chksm=eb470208dc308b1e32fc37b067e74d4a83857e2e966653bd11001726e08b860e9b8823b8029f&amp;scene=126&amp;sessionid=1589765413&amp;key=d0a1cff4a53ee366b6a3b9db4463a81c57f0a31df7c674d69da5c1e68fd9ac41541c57f4ff9aad6d561ed132b7f24e97f92e1a2561906b3375ca9013ffb78ef22da17f8524ed188eb9250016b78895d8&amp;ascene=1&amp;uin=MjIwMjY1NzQ2Mw%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AfSw7wIOssnlM2H1lkDUY0M%3D&amp;pass_ticket=WapZN1mC7IMHiY8PyF4qiSKWo9tWf593g%2F80CUEj2tevTdAHcfeQ97NwcQJIJWww</a></p>
+<p><a href="https://www.jianshu.com/p/e3793ae91a62" target="_blank" rel="noopener">https://www.jianshu.com/p/e3793ae91a62</a></p>
+<p><a href="http://httpd.apache.org/docs/current/programs/ab.html" target="_blank" rel="noopener">http://httpd.apache.org/docs/current/programs/ab.html</a></p>
+<p><a href="https://www.cnblogs.com/jave1ove/p/5486427.html" target="_blank" rel="noopener">https://www.cnblogs.com/jave1ove/p/5486427.html</a></p>
+<p><a href="https://www.cnblogs.com/savorboard/p/wrk.html" target="_blank" rel="noopener">https://www.cnblogs.com/savorboard/p/wrk.html</a></p>
 
       
       <!-- reward -->
@@ -174,7 +176,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://zxt47.github.io/tech-blog/2020/05/19/Validation/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://zxt47.github.io/tech-blog/2020/05/24/HTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -190,19 +192,10 @@
   
   <nav class="article-nav">
     
-      <a href="/tech-blog/2020/05/24/HTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            HTTP性能测试工具
-          
-        </div>
-      </a>
     
-    
-      <a href="/tech-blog/2020/05/04/ASCII%E5%88%B0UTF-8/" class="article-nav-link">
+      <a href="/tech-blog/2020/05/19/Validation/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ASCII到UTF-8</div>
+        <div class="article-nav-title">Validation</div>
       </a>
     
   </nav>
