@@ -90,66 +90,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h1><h2 id="1-Redis相关的数据类型"><a href="#1-Redis相关的数据类型" class="headerlink" title="1.Redis相关的数据类型"></a>1.Redis相关的数据类型</h2><p>Redis的五种基本数据类型：</p>
-<p>String</p>
-<p>List</p>
-<p>Hash</p>
-<p>Set</p>
-<p>Sorted Set</p>
-<p><strong>高级类型：</strong></p>
-<p>HyperLogLog</p>
-<p>Geo</p>
-<p>Pub/Sub</p>
-<p><strong>Redis Module：</strong></p>
-<p>BloomFilter</p>
-<p>RedisSearch</p>
-<p>Redis-ML</p>
-<h2 id="2-Redis的操作"><a href="#2-Redis的操作" class="headerlink" title="2.Redis的操作"></a>2.Redis的操作</h2><h2 id="3-BloomFilter"><a href="#3-BloomFilter" class="headerlink" title="3.BloomFilter"></a>3.BloomFilter</h2><p>我们的业务中经常会遇到穿库的问题，通常可以通过缓存解决。如果数据维度比较多，结果数据集合比较大时，缓存的效果就不明显了。</p>
-<p>因此为了解决穿库的问题，我们引入Bloom Filter。</p>
-<h3 id="适合的场景"><a href="#适合的场景" class="headerlink" title="适合的场景"></a>适合的场景</h3><p>数据库防止穿库 Google Bigtable，Apache HBase和Apache Cassandra以及Postgresql 使用BloomFilter来减少不存在的行或列的磁盘查找。</p>
-<p>避免代价高昂的磁盘查找会大大提高数据库查询操作的性能。如同一开始的业务场景。如果数据量较大，不方便放在缓存中。需要对请求做拦截防止穿库。</p>
-<p>缓存宕机 缓存宕机的场景，使用布隆过滤器会造成一定程度的误判。</p>
-<p>原因是除了Bloom Filter 本身有误判率，宕机之前的缓存不一定能覆盖到所有DB中的数据，当宕机后用户请求了一个以前从未请求的数据，这个时候就会产生误判。</p>
-<p>当然，缓存宕机时使用布隆过滤器作为应急的方式，这种情况应该也是可以忍受的。</p>
-<p>WEB拦截器 相同请求拦截防止被攻击。用户第一次请求，将请求参数放入BloomFilter中，当第二次请求时，先判断请求参数是否被BloomFilter命中。可以提高缓存命中率</p>
-<p>恶意地址检测 chrome 浏览器检查是否是恶意地址。首先针对本地BloomFilter检查任何URL，并且仅当BloomFilter返回肯定结果时才对所执行的URL进行全面检查（并且用户警告，如果它也返回肯定结果）。</p>
-<p>我们将数据库里面中命中的用户放在redis的set类型中，设置不过期。这样相当把redis当作数据库的索引，只要查询redis，就可以知道是否数据存在。</p>
-<p>redis中不存在就可以直接返回结果。如果存在就按照上面提到<code>一般业务缓存流程</code>处理。</p>
-<p>聪明的你肯定会想到更多的问题：</p>
-<ol>
-<li>redis本身可以做缓存，为什么不直接返回数据呢？</li>
-</ol>
-<ol start="2">
-<li>如果数据量比较大，单个set，会有性能问题？</li>
-</ol>
-<ol start="3">
-<li>业务不重要，将全量数据放在redis中，占用服务器大量内存。投入产出不成比例？</li>
-</ol>
-<h4 id="Eval"><a href="#Eval" class="headerlink" title="Eval"></a>Eval</h4><p>在Redis中，Eval默认是关闭的，需要在redis.conf中配置开启Eval；</p>
-<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p><a href="https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers#86-semaphore" target="_blank" rel="noopener">https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers#86-semaphore</a></p>
-<blockquote>
-<p>参考资料</p>
-<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Redis" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Redis</a></p>
-<p><a href="https://redis.io/documentation" target="_blank" rel="noopener">https://redis.io/documentation</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
-    </div>
-    
-    
       <!-- copyright -->
       
         <div class="declare">

@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">362字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -89,34 +89,6 @@
 
     
 
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h1><p>事务隔离级别包含如下几种：</p>
-<ol>
-<li>未提交读：在 READ UNCOMMITTED 级别，事务中的修改，即使没有提交，对其他事务也都是可见的。事务可以读取未提交的数据，这也被称为脏读（Dirty Read ）</li>
-<li>已提交读：大多数数据库系统默认的隔离级别都是 READ COMMITTED （但 MySQL 不是），一个<br>事务从开始直到提交之前，所做的任何修改对其他事务都是不可见的 。</li>
-<li>可重复读：解决了脏读的问题。该级别保证了在同一事务中多次读取同样记录的结果是一致的。但无<br>法解决幻读（Phantom Read）的问题，所谓幻读，指的是当某个事务在读取某个范围内<br>的记录时，会产生幻行。 InnoDB 和 XtraDB 存储引擎通过多版本并发控制 MVCC 解决了<br>幻读的问题。  </li>
-<li>序列化：SERIALIZABLE 是最高的隔离级别。它通过强制事务串行执行，避免了前面说的幻读的问<br> 题。 SERIALIZABLE 会在读取的每一行数据上都加锁，所以可能导致大量的超时和锁争用<br> 的问题，实际中很少使用  </li>
-</ol>
-<h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><p>Oracle的默认事务隔离级别是读未提交；</p>
-<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>MySQL默认的事务隔离是可重复读；</p>
-<h2 id="Spring的声明式事务"><a href="#Spring的声明式事务" class="headerlink" title="Spring的声明式事务"></a>Spring的声明式事务</h2><p>Spring的声明式事务和Hibernate中的Open Session In View（在Spring JPA中介绍）。</p>
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
-    </div>
-    
     
       <!-- copyright -->
       

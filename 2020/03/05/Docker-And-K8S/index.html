@@ -90,45 +90,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker ps</span><br><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">//删除镜像</span><br><span class="line">docker rmi</span><br><span class="line">docker rmi $(docker images | grep ``<span class="string">"^"</span>` `| awk ``<span class="string">"&#123;print $3&#125;"</span>``)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
-
-<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>占位符</p>
-<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>容器编排系统</p>
-<h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
-<p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
-<p>和Kubernetes的区别：</p>
-<p><img src="OpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>使用Docker能够将程序的运行时及其它依赖环境提取出来形成一个隔离的运行环境——image，实现了应用程序的容器化运行。而Kubernetes能够管理和编排已经容器化了的应用，提供容器化应用的部署、扩展和管理等功能。OpenShift在Kubernetes容器管理的基础上，整合了应用程序的生命周期管理，包括image的编译，持续集成，部署和更新等功能。如果仅限于了解和使用，上面这些信息对我来说就足够了，接下来的时间还是回到正文的翻译中去吧。</strong></p>
-<blockquote>
-<p>参考资料：</p>
-<p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
-<p><a href="https://linoxide.com/linux-how-to/dockerfile-create-docker-container/" target="_blank" rel="noopener">https://linoxide.com/linux-how-to/dockerfile-create-docker-container/</a></p>
-<p><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php" target="_blank" rel="noopener">http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php</a></p>
-<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Docker" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Docker</a></p>
-<p>//推荐</p>
-<p><a href="https://yeasy.gitbooks.io/docker_practice/introduction/why.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/introduction/why.html</a></p>
-<p>官方网站</p>
-<p><a href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf" target="_blank" rel="noopener">https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf</a></p>
-<p><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/" target="_blank" rel="noopener">https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
-    </div>
-    
-    
       <!-- copyright -->
       
         <div class="declare">
