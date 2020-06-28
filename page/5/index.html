@@ -104,6 +104,39 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>总结GC相关的知识；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这里的信息是各种VM参数用来调整GC的：</span><br><span class="line">-XX:+PrintGC 输出GC日志</span><br><span class="line">-XX:+PrintGCDetails 输出GC的详细日志</span><br><span class="line">-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）</span><br><span class="line">-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）</span><br><span class="line">-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息</span><br><span class="line">-Xloggc:..&#x2F;logs&#x2F;gc.log 日志文件的输出路径</span><br></pre></td></tr></table></figure>
+
+<h2 id="GC相关的算法"><a href="#GC相关的算法" class="headerlink" title="GC相关的算法"></a>GC相关的算法</h2><ol>
+<li>复制算法</li>
+<li>标记清除算法-数据库访问造成的存活对象较多</li>
+<li>标记交换算法，内存空消耗，但是却解决了内存碎片</li>
+<li>引用计数算法，JDK1.1废弃，优点是可以很快地执行，交织在程序运行中，对程序需要不被长时间打断的实时环境比较有利，无法解决循环依赖问题</li>
+<li>可达性分析算法</li>
+<li>分代算法</li>
+</ol>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>与标记-清除算法相比，复制算法是一种相对高效的回收方法，不适用于存活对象较多的场合-如老年代；</p>
+<p>将原有的内存空间分为两块，每次只使用其中一块，在垃圾回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后清除正在使用的内存块中的所有对象，交换两个内存的角色，完成垃圾回收；</p>
+<h3 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h3><p>Spring默认单例，保证内存中存在的对象数降低</p>
+<p>内存压缩-保证可以申请连续的内存空间</p>
+<h3 id="GC-Roots"><a href="#GC-Roots" class="headerlink" title="GC Roots"></a>GC Roots</h3><p>VM Stack中引用指针-BootStrap</p>
+<p>方法区中静态属性的指针-连接</p>
+<p>方法区中常量对象</p>
+<p>Native的对象-JNI</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -155,6 +188,25 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>Optional类型是JDK8中新增的；今天我们来总结一下；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例代码</span><br><span class="line">@Test</span><br><span class="line">    public void testTheOptional()</span><br><span class="line">    &#123;</span><br><span class="line">        A a&#x3D;new A();</span><br><span class="line">&#x2F;&#x2F;        System.out.println(a.b.c.num);</span><br><span class="line">        int num&#x3D;a.getB().map(B::getC).map(C::getNum).get().get();</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Optional传递</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;B&gt; <span class="title">getB</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> C c;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> C <span class="title">getC</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Optional&lt;Integer&gt; <span class="title">getNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Optional.of(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -208,6 +260,20 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -260,6 +326,62 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Redis相关"><a href="#Redis相关" class="headerlink" title="Redis相关"></a>Redis相关</h1><h2 id="1-Redis相关的数据类型"><a href="#1-Redis相关的数据类型" class="headerlink" title="1.Redis相关的数据类型"></a>1.Redis相关的数据类型</h2><p>Redis的五种基本数据类型：</p>
+<p>String</p>
+<p>List</p>
+<p>Hash</p>
+<p>Set</p>
+<p>Sorted Set</p>
+<p><strong>高级类型：</strong></p>
+<p>HyperLogLog</p>
+<p>Geo</p>
+<p>Pub/Sub</p>
+<p><strong>Redis Module：</strong></p>
+<p>BloomFilter</p>
+<p>RedisSearch</p>
+<p>Redis-ML</p>
+<h2 id="2-Redis的操作"><a href="#2-Redis的操作" class="headerlink" title="2.Redis的操作"></a>2.Redis的操作</h2><h2 id="3-BloomFilter"><a href="#3-BloomFilter" class="headerlink" title="3.BloomFilter"></a>3.BloomFilter</h2><p>我们的业务中经常会遇到穿库的问题，通常可以通过缓存解决。如果数据维度比较多，结果数据集合比较大时，缓存的效果就不明显了。</p>
+<p>因此为了解决穿库的问题，我们引入Bloom Filter。</p>
+<h3 id="适合的场景"><a href="#适合的场景" class="headerlink" title="适合的场景"></a>适合的场景</h3><p>数据库防止穿库 Google Bigtable，Apache HBase和Apache Cassandra以及Postgresql 使用BloomFilter来减少不存在的行或列的磁盘查找。</p>
+<p>避免代价高昂的磁盘查找会大大提高数据库查询操作的性能。如同一开始的业务场景。如果数据量较大，不方便放在缓存中。需要对请求做拦截防止穿库。</p>
+<p>缓存宕机 缓存宕机的场景，使用布隆过滤器会造成一定程度的误判。</p>
+<p>原因是除了Bloom Filter 本身有误判率，宕机之前的缓存不一定能覆盖到所有DB中的数据，当宕机后用户请求了一个以前从未请求的数据，这个时候就会产生误判。</p>
+<p>当然，缓存宕机时使用布隆过滤器作为应急的方式，这种情况应该也是可以忍受的。</p>
+<p>WEB拦截器 相同请求拦截防止被攻击。用户第一次请求，将请求参数放入BloomFilter中，当第二次请求时，先判断请求参数是否被BloomFilter命中。可以提高缓存命中率</p>
+<p>恶意地址检测 chrome 浏览器检查是否是恶意地址。首先针对本地BloomFilter检查任何URL，并且仅当BloomFilter返回肯定结果时才对所执行的URL进行全面检查（并且用户警告，如果它也返回肯定结果）。</p>
+<p>我们将数据库里面中命中的用户放在redis的set类型中，设置不过期。这样相当把redis当作数据库的索引，只要查询redis，就可以知道是否数据存在。</p>
+<p>redis中不存在就可以直接返回结果。如果存在就按照上面提到<code>一般业务缓存流程</code>处理。</p>
+<p>聪明的你肯定会想到更多的问题：</p>
+<ol>
+<li>redis本身可以做缓存，为什么不直接返回数据呢？</li>
+</ol>
+<ol start="2">
+<li>如果数据量比较大，单个set，会有性能问题？</li>
+</ol>
+<ol start="3">
+<li>业务不重要，将全量数据放在redis中，占用服务器大量内存。投入产出不成比例？</li>
+</ol>
+<h4 id="Eval"><a href="#Eval" class="headerlink" title="Eval"></a>Eval</h4><p>在Redis中，Eval默认是关闭的，需要在redis.conf中配置开启Eval；</p>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p><a href="https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers#86-semaphore" target="_blank" rel="noopener">https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers#86-semaphore</a></p>
+<blockquote>
+<p>参考资料</p>
+<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Redis" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Redis</a></p>
+<p><a href="https://redis.io/documentation" target="_blank" rel="noopener">https://redis.io/documentation</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -311,6 +433,35 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="一些关键信息"><a href="#一些关键信息" class="headerlink" title="一些关键信息"></a>一些关键信息</h1><p>./bin/logstash -f ./conf/logstash-demo.conf –config.reload.automatic**</p>
+<p><strong>filebeat -e -c filebeat.yml</strong></p>
+<h2 id="具体参考资料"><a href="#具体参考资料" class="headerlink" title="具体参考资料"></a>具体参考资料</h2><p><a href="https://blog.csdn.net/cai750415222/article/details/86614854" target="_blank" rel="noopener">https://blog.csdn.net/cai750415222/article/details/86614854</a></p>
+<p><a href="https://cn.bing.com/search?q=logstash删除字段的前5位" target="_blank" rel="noopener">https://cn.bing.com/search?q=logstash%E5%88%A0%E9%99%A4%E5%AD%97%E6%AE%B5%E7%9A%84%E5%89%8D5%E4%BD%8D</a></p>
+<p><a href="https://blog.csdn.net/weixin_30402343/article/details/99023678" target="_blank" rel="noopener">https://blog.csdn.net/weixin_30402343/article/details/99023678</a></p>
+<p><a href="https://blog.csdn.net/xiaoyu_bd/article/details/52531051" target="_blank" rel="noopener">https://blog.csdn.net/xiaoyu_bd/article/details/52531051</a></p>
+<p><a href="https://cn.bing.com/search?q=logstash将message中的时间戳&qs=n&form=QBRE&sp=-1&pq=logstash将message中的时间戳&sc=0-21&sk=&cvid=7E3AB1021D1E458B9E6489AF20547576" target="_blank" rel="noopener">https://cn.bing.com/search?q=logstash%E5%B0%86message%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E6%88%B3&amp;qs=n&amp;form=QBRE&amp;sp=-1&amp;pq=logstash%E5%B0%86message%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4%E6%88%B3&amp;sc=0-21&amp;sk=&amp;cvid=7E3AB1021D1E458B9E6489AF20547576</a></p>
+<p><a href="https://www.fanyigou.com/doc/toTranslate.htm#zhihuxielunwenbibei" target="_blank" rel="noopener">https://www.fanyigou.com/doc/toTranslate.htm#zhihuxielunwenbibei</a></p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-split.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/logstash/current/plugins-filters-split.html</a></p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html#plugins-filters-grok-match" target="_blank" rel="noopener">https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html#plugins-filters-grok-match</a></p>
+<p><a href="https://elasticsearch.cn/question/5322" target="_blank" rel="noopener">https://elasticsearch.cn/question/5322</a></p>
+<p><a href="https://cn.bing.com/search?q=spilt+mutate+add_field&amp;qs=n&amp;form=QBRE&amp;sp=-1&amp;pq=spilt+mutate+add_field&amp;sc=0-22&amp;sk=&amp;cvid=9340ADD8EC57489281311637C12A136D" target="_blank" rel="noopener">https://cn.bing.com/search?q=spilt+mutate+add_field&amp;qs=n&amp;form=QBRE&amp;sp=-1&amp;pq=spilt+mutate+add_field&amp;sc=0-22&amp;sk=&amp;cvid=9340ADD8EC57489281311637C12A136D</a></p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-add_field" target="_blank" rel="noopener">https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-add_field</a></p>
+<p><a href="https://www.elastic.co/guide/en/logstash/current/filter-plugins.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/logstash/current/filter-plugins.html</a></p>
+<p><a href="https://blog.csdn.net/wyqlxy/article/details/52622867" target="_blank" rel="noopener">https://blog.csdn.net/wyqlxy/article/details/52622867</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       

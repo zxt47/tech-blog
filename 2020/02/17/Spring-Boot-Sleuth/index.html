@@ -90,6 +90,45 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Spring-Cloud-Sleuth-Introduction"><a href="#Spring-Cloud-Sleuth-Introduction" class="headerlink" title="Spring Cloud Sleuth Introduction"></a>Spring Cloud Sleuth Introduction</h1><p>Spring Boot Sleuth是Spring官方提供的一个支持链路跟踪的API框架实现，相比于国内林林总总的各种跟踪实现，Spring  Sleuth是Spring官方实现的一个生成TraceID和SpanID的方案。</p>
+<h2 id="ID生成介绍"><a href="#ID生成介绍" class="headerlink" title="ID生成介绍"></a>ID生成介绍</h2><p>大部分的链路跟踪组件都来自于谷歌关于Dapper的论文，其中介绍了如何设计一个分布式的链路跟踪系统，其中包含TraceID(标识唯一一次请求的ID)和SpanID(具体某一个服务组件或业务逻辑处理时的ID)。</p>
+<p>数据模型<br>我们先来看看Zipkin中关于跟踪信息的一些基础概念。由于Zipkin的实现借鉴了<br>Google的Dapper，所以它们有着类似的核心术语，主要有下面几个内容：<br>Span：它代表了一个基础的工作单元。我们以HTTP请求为例，一次完<br>整的请求过程在客户端和服务端都会产生多个不同的事件状态（比如下面<br>所说的四个核心Annotation所标识的不同阶段），对于同一个请求来说，<br>它们属于一个工作单元，所以同一HTTP请求过程中的四个Annotation同属<br>于一个Span。每一个不同的工作单元都通过一个64位的ID来唯一标识，<br>称为Span ID。另外，在工作单元中还存储了一个用来串联其他工作单元<br>的ID，它也通过一个64位的ID来唯一标识，称为Trace ID。在同一条请求<br>链路中的不同工作单元都会有不同的Span ID，但是它们的Trace ID是相<br>同的，所以通过Trace ID可以将一次请求中依赖的所有依赖请求串联起来<br>形成请求链路。除了这两个核心的ID之外，Span中还存储了一些其他信<br>息，比如：描述信息、事件时间戳、Annotation的键值对属性、上一级工<br>作单元的Span ID等。<br>Trace：它是由一系列具有相同Trace ID的Span串联形成的一个树状<br>结构。在复杂的分布式系统中，每一个外部请求通常都会产生一个复杂的<br>树状结构的Trace。  </p>
+<h2 id="Zipkin"><a href="#Zipkin" class="headerlink" title="Zipkin"></a>Zipkin</h2><p>Zipkin是一个可以解释Sleuth生成的ID的一种服务端手段；我们可以在Zipkin上看到具体的调用链情况。</p>
+<h2 id="Spring-MVC中的Span"><a href="#Spring-MVC中的Span" class="headerlink" title="Spring MVC中的Span"></a>Spring MVC中的Span</h2><p>Sleuth支持很多instrument组件来解决在各种分布式组件中传递SpanID和传播TraceID的情况，其中Spring MVC是在传输的HTTP报文头里面追加了关于TraceID和SpanID的HTTP头信息。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> brave.spring.webmvc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> brave.SpanCustomizer;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.handler.HandlerInterceptorAdapter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SpanCustomizingAsyncHandlerInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span>(</span><br><span class="line">        required = <span class="keyword">false</span></span><br><span class="line">    )</span><br><span class="line">    HandlerParser handlerParser = <span class="keyword">new</span> HandlerParser();</span><br><span class="line"></span><br><span class="line">    SpanCustomizingAsyncHandlerInterceptor() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o)</span> </span>&#123;</span><br><span class="line">        SpanCustomizer span = (SpanCustomizer)request.getAttribute(SpanCustomizer<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br><span class="line">        <span class="keyword">if</span> (span != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.handlerParser.preHandle(request, o, span);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> </span>&#123;</span><br><span class="line">        SpanCustomizer span = (SpanCustomizer)request.getAttribute(SpanCustomizer<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br><span class="line">        <span class="keyword">if</span> (span != <span class="keyword">null</span>) &#123;</span><br><span class="line">            SpanCustomizingHandlerInterceptor.setHttpRouteAttribute(request);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在Zipkin中的默认ID实现库，brave中是通过拦截器来进行TraceID和SpanID的传递的。</p>
+<h2 id="B3传播ID"><a href="#B3传播ID" class="headerlink" title="B3传播ID"></a>B3传播ID</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TraceAutoConfiguration</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/openzipkin/b3-propagation" target="_blank" rel="noopener">https://github.com/openzipkin/b3-propagation</a></p>
+<h2 id="扩展讨论"><a href="#扩展讨论" class="headerlink" title="扩展讨论"></a>扩展讨论</h2><p>蚂蚁的SofaTracer同样是一个支持调用链监控的产品。</p>
+<p><a href="https://github.com/sofastack-guides/sofa-tracer-guides/tree/master/tracer-sample-with-springmvc" target="_blank" rel="noopener">https://github.com/sofastack-guides/sofa-tracer-guides/tree/master/tracer-sample-with-springmvc</a></p>
+<p>美团的CAT功能更为强大，但是实在太重</p>
+<p><a href="https://github.com/dianping/cat" target="_blank" rel="noopener">https://github.com/dianping/cat</a></p>
+<p>Apache基金会的SkyWalking是未来最为优秀的组件之一。</p>
+<p><a href="https://github.com/apache/skywalking" target="_blank" rel="noopener">https://github.com/apache/skywalking</a></p>
+<p><strong>参考资料</strong></p>
+<p><strong><a href="https://github.com/openzipkin/brave" target="_blank" rel="noopener">https://github.com/openzipkin/brave</a></strong></p>
+<p><strong><a href="https://github.com/spring-cloud/spring-cloud-sleuth" target="_blank" rel="noopener">https://github.com/spring-cloud/spring-cloud-sleuth</a></strong></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">

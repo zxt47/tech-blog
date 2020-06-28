@@ -104,6 +104,20 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Dubbo介绍"><a href="#Dubbo介绍" class="headerlink" title="Dubbo介绍"></a>Dubbo介绍</h1>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -155,6 +169,40 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Redis内存回收策略"><a href="#Redis内存回收策略" class="headerlink" title="Redis内存回收策略"></a>Redis内存回收策略</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis内存回收机制主要体现在以下两个方面：</p>
+<p>1.删除到达时间的键对象</p>
+<p>2.内存使用达到maxmemory上限时触发内存溢出控制策略</p>
+<h2 id="删除过期键对象"><a href="#删除过期键对象" class="headerlink" title="删除过期键对象"></a>删除过期键对象</h2><p>Redis所有的键都可以设置过期属性，内部保存在过期字典中。由于进程内保存了大量的键，维护每个键精准的过期删除机制会导致消耗大量的CPU，对于单线程的Redis来说成本过高，因此Redis采用<strong>惰性删除</strong>和<strong>定时任务删除</strong>机制实现过期键的内存回收。</p>
+<p><strong>- 惰性删除</strong>：惰性删除用于当客户端读取带有超时属性的键时，如果已经超过键设置的过期时间，会执行删除操作并返回空，这种策略是出于节省CPU成本考虑，不需要单独维护TTL链表来处理过期键的删除。但是单独用这种方式存在内存泄露的问题，当过期键一直没有访问将无法得到及时删除，从而导致内存不能及时释放。正因为如此，Redis还提供另一种定时任务删除机制作为惰性删除的补充。<br> <strong>- 定时任务删除</strong>：Redis内部维护一个定时任务，默认每秒运行10次（通过配置hz控制）。定时任务中删除过期键逻辑采用了自适应算法，根据键的过期比例，使用快慢两种速率模式回收键。<br> 比如：</p>
+<ol>
+<li>定时任务在每个数据库空间随机检查20个键，当发现过期时删除对应的键。</li>
+<li>如果超过检查数25%的键过期，循环执行回收逻辑直到不足25%或运行超时为止，慢模式下超时时间为25ms。</li>
+<li>如果之前回收键逻辑超时，则在Redis触发内部事件之前再次以快模式运行回收过期键任务，快模式下超时时间为1ms且2s内只能运行1次。</li>
+<li>快慢两种模式内部删除逻辑相同，只是执行的超时时间不同。</li>
+</ol>
+<h2 id="内存溢出控制策略"><a href="#内存溢出控制策略" class="headerlink" title="内存溢出控制策略"></a>内存溢出控制策略</h2><p>当Redis所用内存达到maxmemory上限时会触发相应的溢出控制策略。具体策略受maxmemory-policy参数控制，Redis支持6种策略，如下所示：</p>
+<ol>
+<li>noeviction：默认策略，当内存不足以容纳新写入数据时，新写入操作会报错。应该没人用吧。</li>
+<li>allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 Key。推荐使用，目前项目在用这种。</li>
+<li>allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个 Key。应该也没人用吧，你不删最少使用 Key，去随机删。</li>
+<li>volatile-lru：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 Key。这种情况一般是把 Redis 既当缓存，又做持久化存储的时候才用。不推荐。</li>
+<li>volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个 Key。依然不推荐。</li>
+<li>volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的 Key 优先移除。不推荐。如果没有对应的键，则回退到noeviction策略。</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -208,6 +256,21 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h1><p>字典树又叫做Trie；一般是作为前缀树或者后缀树存在的。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -259,6 +322,21 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Spring-Data-JPA"><a href="#Spring-Data-JPA" class="headerlink" title="Spring Data JPA"></a>Spring Data JPA</h1><p>OpenSessionInViewInterceptor</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -312,6 +390,22 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>动态规划（Dynamic Programming）</p>
+<p>0-1背包问题，旅行家问题，割绳子问题</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -363,6 +457,26 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="基本数据类型的占用"><a href="#基本数据类型的占用" class="headerlink" title="基本数据类型的占用"></a>基本数据类型的占用</h2><p>byte的取值范围为-128~127，占用1个字节（-2的7次方到2的7次方-1） </p>
+<p>short的取值范围为-32768~32767，占用2个字节（-2的15次方到2的15次方-1）</p>
+<p>int的取值范围为（-2147483648~<a href="https://www.baidu.com/s?wd=2147483647&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">2147483647</a>），占用4个字节（-2的31次方到2的31次方-1）</p>
+<p>long的取值范围为（-9223372036854774808~9223372036854774807），占用8个字节（-2的63次方到2的63次方-1）</p>
+<p>float:单精度类型,精度是8位有效数字（其余部分四舍五入），取值范围是10的-38次方到10的38次方，float占用4个字节的存储空间。</p>
+<p>double:双精度类型，精度是17位有效数字，取值范围是10的-308次方到10的308次方，double占用8个字节的存储空间</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -416,6 +530,35 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="网络知识"><a href="#网络知识" class="headerlink" title="网络知识"></a>网络知识</h1><h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h2 id="七层网络模型"><a href="#七层网络模型" class="headerlink" title="七层网络模型"></a>七层网络模型</h2><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><h5 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h5><ul>
+<li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状态；</li>
+<li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列号，发送给客户端；进入SYN_RCVD状态；</li>
+<li>第三次握手：客户端检查acknowledge number是否为序列号+1，ACK是否为1，检查正确之后将自己的ACK置为1，产生一个acknowledge number=服务器发的序列号+1，发送给服务器；进入ESTABLISHED状态；服务器检查ACK为1和acknowledge number为序列号+1之后，也进入ESTABLISHED状态；完成三次握手，连接建立。</li>
+</ul>
+<h5 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h5><ul>
+<li>第一次挥手：Client将FIN置为1，发送一个序列号seq给Server；进入FIN_WAIT_1状态；</li>
+<li>第二次挥手：Server收到FIN之后，发送一个ACK=1，acknowledge number=收到的序列号+1；进入CLOSE_WAIT状态。此时客户端已经没有要发送的数据了，但仍可以接受服务器发来的数据。</li>
+<li>第三次挥手：Server将FIN置1，发送一个序列号给Client；进入LAST_ACK状态；</li>
+<li>第四次挥手：Client收到服务器的FIN后，进入TIME_WAIT状态；接着将ACK置1，发送一个acknowledge number=序列号+1给服务器；服务器收到后，确认acknowledge number后，变为CLOSED状态，不再向客户端发送数据。客户端等待2*MSL（报文段最长寿命）时间后，也进入CLOSED状态。完成四次挥手。</li>
+</ul>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><blockquote>
+<p>参考资料</p>
+<p><a href="https://blog.csdn.net/qzcsu/article/details/72861891?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">https://blog.csdn.net/qzcsu/article/details/72861891?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -467,6 +610,25 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>观察者模式一般叫做Observer模式，因为我们这边主要使用的是Java，在Java 1.0中有一个类叫做Observable；可以直接使用。</p>
+<blockquote>
+<p>参考资料</p>
+<p><a href="https://blog.csdn.net/u012250875/article/details/77747878" target="_blank" rel="noopener">https://blog.csdn.net/u012250875/article/details/77747878</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -520,6 +682,32 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p>为什么要开始学习位运算呢？是因为来自于JDK源码中HashMap的hash方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以决定好好看看位运算的相关概念。</p>
+<p>X &amp; 1==1 OR ==0</p>
+<p>X=X&amp;(X-1)     清零最低位的1</p>
+<p>X &amp; -X 得到最低位的1</p>
+<p>其实选择这些位操作是为了更快</p>
+<blockquote>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/sx729034738/article/details/69569055" target="_blank" rel="noopener">https://blog.csdn.net/sx729034738/article/details/69569055</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -571,6 +759,21 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="分布式ID生成方案"><a href="#分布式ID生成方案" class="headerlink" title="分布式ID生成方案"></a>分布式ID生成方案</h1><p>最近有人开始问我分布式ID的生成问题，我们现在主要使用的是UUID生成方案，但是UUID的问题是冲突虽然比较小，但是他的字符串占用的空间比较大，如果是UTF-8编码的话，就需要占用32*3=96个字节；而且生成的ID太过于随机，完全不是人读的，而且没有递增，如果要按前后顺序排序的话，基本不可能；</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       

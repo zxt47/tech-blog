@@ -90,6 +90,34 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="1-Vertx介绍"><a href="#1-Vertx介绍" class="headerlink" title="1.Vertx介绍"></a>1.Vertx介绍</h1><h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>为什么要开一个关于Vertx的介绍呢，是因为最近在转公司的微服务平台的时候，发现使用了大量的Netty相关的技术，但是后来发现从Netty的ChannelHandler的过程中公司使用了新的框架，Vertx；在代码中创建了一个VertxHandler；这提起来我的兴趣，为什么这里要设置一个VertxHandler呢？而不是选择属于Netty的其他HTTP Handler呢？所以我们讲一下什么是Vertx？如果对Netty感兴趣的话，欢迎看我的其他专栏-其他专栏会讲跟Netty相关的知识；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Netty中的AbstractChannelHandlerContext</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeChannelRead</span><span class="params">(Object msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.invokeHandler()) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ((ChannelInboundHandler)<span class="keyword">this</span>.handler()).channelRead(<span class="keyword">this</span>, msg);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">this</span>.notifyHandlerException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fireChannelRead(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公司自己实现的VertxHandler，可以看到是继承了ChannelDuplexHandler的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">VertxHandler</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">ConnectionBase</span>&gt; <span class="keyword">extends</span> <span class="title">ChannelDuplexHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Handler&lt;Object&gt; NULL_HANDLER = (m) -&gt; &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Function&lt;ChannelHandlerContext, C&gt; connectionFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ContextInternal context;</span><br><span class="line">    <span class="keyword">private</span> C conn;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; addHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; removeHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;Object&gt; messageHandler;</span><br></pre></td></tr></table></figure>
+
+<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>Netty的HTTP:<a href="https://www.cnblogs.com/luxiaoxun/p/3959450.html" target="_blank" rel="noopener">https://www.cnblogs.com/luxiaoxun/p/3959450.html</a></p>
+<p>Baledung:<a href="https://www.baeldung.com/vertx" target="_blank" rel="noopener">https://www.baeldung.com/vertx</a></p>
+<p><a href="https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers" target="_blank" rel="noopener">https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers</a></p>
+<p><a href="https://stackoverflow.com/questions/49746420/how-vertx-handlers-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/49746420/how-vertx-handlers-work</a></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">

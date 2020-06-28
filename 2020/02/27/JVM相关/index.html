@@ -90,6 +90,42 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><p>方法区</p>
+<p>堆</p>
+<p>程序计数器</p>
+<p>虚拟机栈</p>
+<p>本地方法栈</p>
+<p>JVM初始运行的时候都会分配好方法区和堆，剩下的都与线程生命周期保持一致；</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>Method Area的目的是保证常量，静态变量和JIT编译后的代码也都在方法区；</p>
+<p>方法区内部有一个非常重要的区域，叫做运行时常量池，简称RCP;</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>运行时常量池，在字节码文件中，除了有类的版本、字段、方法和接口等相关信息描述外，还有常量池信息。</p>
+<p>类似String的intern()</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存是在NIO中主要使用的，目的是为了提升NIO在Native堆和Java堆中互相切换的开销</p>
+<h3 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h3><p>Thread Local Allocation Buffer，每个线程拥有的一小部分，一般是在分配对象的时候，除去经过逃逸分析可以解决在栈上分配的问题之外，还支持在线程私有缓冲中分配对象。之后再考虑是在老年代还是Eden区域分配；</p>
+<h4 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h4><p>基础类 Object 的一个方法，保证对象在被垃圾收集前完成特定的资源回收。由于 finalize 执行时间不确定且可能造成程序死锁、拖慢垃圾收集等问题，Java 9 中将改方法废弃.</p>
+<p>优化：逐步用Cleaner来替换调原有的finalize实现。</p>
+<blockquote>
+<p>参考资料</p>
+<p><a href="https://www.hollischuang.com/archives/2398" target="_blank" rel="noopener">https://www.hollischuang.com/archives/2398</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">

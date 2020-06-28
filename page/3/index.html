@@ -104,6 +104,41 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker ps</span><br><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">//删除镜像</span><br><span class="line">docker rmi</span><br><span class="line">docker rmi $(docker images | grep ``<span class="string">"^"</span>` `| awk ``<span class="string">"&#123;print $3&#125;"</span>``)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>占位符</p>
+<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>容器编排系统</p>
+<h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
+<p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
+<p>和Kubernetes的区别：</p>
+<p><img src="OpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>使用Docker能够将程序的运行时及其它依赖环境提取出来形成一个隔离的运行环境——image，实现了应用程序的容器化运行。而Kubernetes能够管理和编排已经容器化了的应用，提供容器化应用的部署、扩展和管理等功能。OpenShift在Kubernetes容器管理的基础上，整合了应用程序的生命周期管理，包括image的编译，持续集成，部署和更新等功能。如果仅限于了解和使用，上面这些信息对我来说就足够了，接下来的时间还是回到正文的翻译中去吧。</strong></p>
+<blockquote>
+<p>参考资料：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
+<p><a href="https://linoxide.com/linux-how-to/dockerfile-create-docker-container/" target="_blank" rel="noopener">https://linoxide.com/linux-how-to/dockerfile-create-docker-container/</a></p>
+<p><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php" target="_blank" rel="noopener">http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php</a></p>
+<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Docker" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Docker</a></p>
+<p>//推荐</p>
+<p><a href="https://yeasy.gitbooks.io/docker_practice/introduction/why.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/introduction/why.html</a></p>
+<p>官方网站</p>
+<p><a href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf" target="_blank" rel="noopener">https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf</a></p>
+<p><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/" target="_blank" rel="noopener">https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -155,6 +190,30 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>RPC的全拼叫做Remote Procedure Call，远程过程调用；RPC的最大特点就是可以让我们像调用本地方法一样发起远程调用。做任何事情都应该  Start with Why，那我们就先来说说为什么要学习 RPC。要回答这个问题，我们就得先考虑下 RPC 的实际应用场景。说到 RPC，可能你的第一反应就是“微服务”。RPC 最大的特点就是可以让我们像调用本地一样发起远程调用，这一特点常常会让人感觉 RPC 就是为“微服务”或 SOA 而生的。现在的大多数应用系统发展到一定规模之后，都会向“微服务化”演进，演进后的大型应用系统也的确是由一个个“微服务”组成的。我们可以说 RPC 是“微服务”的基础，这一点是毋庸置疑的。现在我们就可以反过来想这样一个问题——RPC 是不是只应用在“微服务”中呢？</p>
+<p>当然不是，只要涉及到网络通信，我们就可能用到 RPC。一起看这样两个例子。</p>
+<p>例 1：大型分布式应用系统可能会依赖消息队列、分布式缓存、分布式数据库以及统一配置中心等，应用程序与依赖的这些中间件之间都可以通过 RPC 进行通信。比如 etcd，它作为一个统一的配置服务，客户端就是通过 gRPC 框架与服务端进行通信的。</p>
+<p>例 2：我们经常会谈到的容器编排引擎 Kubernetes，它本身就是分布式的，Kubernetes 的 kube-apiserver 与整个分布式集群中的每个组件间的通讯，都是通过 gRPC 框架进行的。</p>
+<p>在我看来，RPC 是解决分布式系统通信问题的一大利器。分布式系统中的网络通信一般都会采用四层的 TCP 协议或七层的 HTTP 协议，在我的了解中，前者占大多数，这主要得益于 TCP 协议的稳定性和高效性。网络通信说起来简单，但实际上是一个非常复杂的过程，这个过程主要包括：对端节点的查找、网络连接的建立、传输数据的编码解码以及网络连接的管理等等，每一项都很复杂。你可以想象一下，在搭建一个复杂的分布式系统过程中，如果开发人员在编码时要对每个涉及到网络通信的逻辑都进行一系列的复杂编码，这将是件多么恐怖的事儿。所以说，网络通信是搭建分布式系统的一个大难题，是一点不为过的，我们必须给予足够的重视。而 RPC 对网络通信的整个过程做了完整包装，在搭建分布式系统时，它会使网络通信逻辑的开发变得更加简单，同时也会让网络通信变得更加安全可靠。现在你是不是感觉到学好 RPC 是很有必要的？</p>
+<p>说起来也特别简单。当我们认识到，使用 RPC 就可以像调用本地一样发起远程调用，用它可以解决通信问题，这时候我们肯定要去学序列化、编解码以及网络传输这些内容。把这些内容掌握后，你就会发现，原来这些只是 RPC 的基础，RPC 还有更吸引人的点，它真正强大的地方是它的治理功能，比如<strong>连接管理、健康检测、负载均衡、优雅启停机、异常重试、业务分组以及熔断限流</strong>等等。突然间，你会感觉自己走进了一个新世界，这些内容会成为你今后学习 RPC 的重点和难点。</p>
+<blockquote>
+<p>参考资料</p>
+<p><a href="https://www.cnblogs.com/findbetterme/p/11200999.html" target="_blank" rel="noopener">https://www.cnblogs.com/findbetterme/p/11200999.html</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -208,6 +267,35 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="基本的SQL和复杂的SQL"><a href="#基本的SQL和复杂的SQL" class="headerlink" title="基本的SQL和复杂的SQL"></a>基本的SQL和复杂的SQL</h1><h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><p>内连接即最常见的等值连接</p>
+<p>例如下面的SQL：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>* <span class="keyword">from</span> [<span class="keyword">Class</span>] c,[Student] s <span class="keyword">where</span> c.ClassID=s.StudentClassID</span><br></pre></td></tr></table></figure>
+
+<p>这样出来的就是隐式的内连接，没有INNER JOIN，行成的中间表为两个表的笛卡尔积；</p>
+<h3 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h3><p>笛卡尔积是指在数学中，两个集合X和Y的笛卡尓积（Cartesian product），又称直积，表示为X × Y，第一个对象是X的成员而第二个对象是Y的所有可能有序对的其中一个成员。假设集合A={a, b}，集合B={0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}。</p>
+<h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>外连接分为左外连接和右外连接和全外连接；</p>
+<h3 id="SQL92和SQL99的标准"><a href="#SQL92和SQL99的标准" class="headerlink" title="SQL92和SQL99的标准"></a>SQL92和SQL99的标准</h3><blockquote>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
+<p><a href="http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html" target="_blank" rel="noopener">http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html</a></p>
+<p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
+<p><a href="https://blog.csdn.net/plg17/article/details/78758593" target="_blank" rel="noopener">https://blog.csdn.net/plg17/article/details/78758593</a></p>
+<p><a href="https://www.cnblogs.com/bluedeblog/p/6654065.html" target="_blank" rel="noopener">https://www.cnblogs.com/bluedeblog/p/6654065.html</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -259,6 +347,21 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Java集合框架"><a href="#Java集合框架" class="headerlink" title="Java集合框架"></a>Java集合框架</h1><p>List,Set,Stack,Queue,Map</p>
+<h2 id="ArrayList或者LinkedList"><a href="#ArrayList或者LinkedList" class="headerlink" title="ArrayList或者LinkedList"></a>ArrayList或者LinkedList</h2><h2 id="HashSet或者TreeSet"><a href="#HashSet或者TreeSet" class="headerlink" title="HashSet或者TreeSet"></a>HashSet或者TreeSet</h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -312,6 +415,28 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Redis-Sentinal和Cluster"><a href="#Redis-Sentinal和Cluster" class="headerlink" title="Redis Sentinal和Cluster"></a>Redis Sentinal和Cluster</h1><p>Sentinal(哨兵)是用来保证Redis高可用的技术，同样，cluster也是一个保证Redis高可用的技术；</p>
+<h2 id="Spring-Boot-Redis"><a href="#Spring-Boot-Redis" class="headerlink" title="Spring Boot Redis"></a>Spring Boot Redis</h2><p>Redis下面的master和replica的端口一般是6379,6381,6382这种 ，但是Sentinal的端口一般则不是：</p>
+<p>一般是26379,26381,26382；所以说如果你在Boot的配置文件中指定了</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.redis.jedis.pool.max-idle</span>=<span class="string">300</span></span><br><span class="line"><span class="meta">spring.redis.sentinel.master</span>=<span class="string">mymaster</span></span><br><span class="line"><span class="meta">spring.redis.sentinel.nodes</span>=<span class="string">:6379,:6381,:6382</span></span><br></pre></td></tr></table></figure>
+
+<p>那么就会出现错误，因为Redis无法执行这句command（即SENTINEL）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Caused by: io.lettuce.core.RedisCommandExecutionException: ERR unknown command <span class="string">'SENTINEL'</span></span><br><span class="line">	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:<span class="number">118</span>)</span><br><span class="line">	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:<span class="number">109</span>)</span><br><span class="line">	at io.lettuce.core.protocol.CommandWrapper.complete(CommandWrapper.java:<span class="number">57</span>)</span><br><span class="line">	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:<span class="number">563</span>)</span><br><span class="line">	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:<span class="number">516</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">362</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">348</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:<span class="number">340</span>)</span><br><span class="line">	at io.netty.channel.ChannelInboundHandlerAdapter.channelRead(ChannelInboundHandlerAdapter.java:<span class="number">86</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">362</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">348</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:<span class="number">340</span>)</span><br><span class="line">	at io.netty.channel.ChannelInboundHandlerAdapter.channelRead(ChannelInboundHandlerAdapter.java:<span class="number">86</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">362</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">348</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:<span class="number">340</span>)</span><br><span class="line">	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:<span class="number">1414</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">362</span>)</span><br><span class="line">	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:<span class="number">348</span>)</span><br><span class="line">	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:<span class="number">945</span>)</span><br><span class="line">	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:<span class="number">146</span>)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:<span class="number">645</span>)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:<span class="number">580</span>)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:<span class="number">497</span>)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:<span class="number">459</span>)</span><br><span class="line">	at io.netty.util.concurrent.SingleThreadEventExecutor$<span class="number">5</span>.run(SingleThreadEventExecutor.java:<span class="number">886</span>)</span><br><span class="line">	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:<span class="number">30</span>)</span><br><span class="line">	... <span class="number">1</span> common frames omitted</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -363,6 +488,20 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -416,6 +555,38 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><p>方法区</p>
+<p>堆</p>
+<p>程序计数器</p>
+<p>虚拟机栈</p>
+<p>本地方法栈</p>
+<p>JVM初始运行的时候都会分配好方法区和堆，剩下的都与线程生命周期保持一致；</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>Method Area的目的是保证常量，静态变量和JIT编译后的代码也都在方法区；</p>
+<p>方法区内部有一个非常重要的区域，叫做运行时常量池，简称RCP;</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>运行时常量池，在字节码文件中，除了有类的版本、字段、方法和接口等相关信息描述外，还有常量池信息。</p>
+<p>类似String的intern()</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存是在NIO中主要使用的，目的是为了提升NIO在Native堆和Java堆中互相切换的开销</p>
+<h3 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h3><p>Thread Local Allocation Buffer，每个线程拥有的一小部分，一般是在分配对象的时候，除去经过逃逸分析可以解决在栈上分配的问题之外，还支持在线程私有缓冲中分配对象。之后再考虑是在老年代还是Eden区域分配；</p>
+<h4 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h4><p>基础类 Object 的一个方法，保证对象在被垃圾收集前完成特定的资源回收。由于 finalize 执行时间不确定且可能造成程序死锁、拖慢垃圾收集等问题，Java 9 中将改方法废弃.</p>
+<p>优化：逐步用Cleaner来替换调原有的finalize实现。</p>
+<blockquote>
+<p>参考资料</p>
+<p><a href="https://www.hollischuang.com/archives/2398" target="_blank" rel="noopener">https://www.hollischuang.com/archives/2398</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -467,6 +638,27 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Monitor-DB-Connections"><a href="#Monitor-DB-Connections" class="headerlink" title="Monitor DB Connections"></a>Monitor DB Connections</h1><p>最近一直在解决各种问题，发现最近一直出现数据库Lock的问题，说句老实话，不论是使用Druid还是Hikari，都有各种各样的监控手段；</p>
+<h2 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h2><p>Alibaba Druid，当初温少设计这个连接池的目的就在于其具有的强大的监控的性能；但是发现现在的项目并没有很好地使用上，所以准备在新的1.8改造上试验一下；</p>
+<p><a href="https://www.jianshu.com/p/e84e2709f383" target="_blank" rel="noopener">https://www.jianshu.com/p/e84e2709f383</a></p>
+<h2 id="Hikari"><a href="#Hikari" class="headerlink" title="Hikari"></a>Hikari</h2><p>Hikari作为Spring Boot默认的连接池，其本身是支持HealthCheck的；</p>
+<p><a href="https://github.com/brettwooldridge/HikariCP/wiki/Dropwizard-HealthChecks" target="_blank" rel="noopener">https://github.com/brettwooldridge/HikariCP/wiki/Dropwizard-HealthChecks</a></p>
+<p><a href="https://stackoverflow.com/questions/28615203/how-do-i-configure-hikaricp-and-dropwizard-coda-hale-metrics-in-spring-boot-appl" target="_blank" rel="noopener">https://stackoverflow.com/questions/28615203/how-do-i-configure-hikaricp-and-dropwizard-coda-hale-metrics-in-spring-boot-appl</a></p>
+<p><a href="https://stackoverflow.com/questions/50770462/springboot-2-monitor-db-connection" target="_blank" rel="noopener">https://stackoverflow.com/questions/50770462/springboot-2-monitor-db-connection</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       
@@ -520,6 +712,46 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h1><p>事务隔离级别包含如下几种：</p>
+<ol>
+<li>未提交读：在 READ UNCOMMITTED 级别，事务中的修改，即使没有提交，对其他事务也都是可见的。事务可以读取未提交的数据，这也被称为脏读（Dirty Read ）</li>
+<li>已提交读：大多数数据库系统默认的隔离级别都是 READ COMMITTED （但 MySQL 不是），一个<br>事务从开始直到提交之前，所做的任何修改对其他事务都是不可见的 。</li>
+<li>可重复读：解决了脏读的问题。该级别保证了在同一事务中多次读取同样记录的结果是一致的。但无<br>法解决幻读（Phantom Read）的问题，所谓幻读，指的是当某个事务在读取某个范围内<br>的记录时，会产生幻行。 InnoDB 和 XtraDB 存储引擎通过多版本并发控制 MVCC 解决了<br>幻读的问题。  </li>
+<li>序列化：SERIALIZABLE 是最高的隔离级别。它通过强制事务串行执行，避免了前面说的幻读的问<br> 题。 SERIALIZABLE 会在读取的每一行数据上都加锁，所以可能导致大量的超时和锁争用<br> 的问题，实际中很少使用  </li>
+</ol>
+<h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><p>Oracle的默认事务隔离级别是读未提交；</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>MySQL默认的事务隔离是可重复读；</p>
+<h2 id="Spring的声明式事务"><a href="#Spring的声明式事务" class="headerlink" title="Spring的声明式事务"></a>Spring的声明式事务</h2><p>Spring的声明式事务和Hibernate中的Open Session In View（在Spring JPA中介绍）。</p>
+<p>Spring声明式事务支持以下几种：</p>
+<p>事务传播-</p>
+<p>REQUIRED：</p>
+<p>业务方法需要在一个事务中运行。如果方法运行时，已经处在一个事务中，那么这个时候<br>就会加入到该事务中，如果当前没有事务环境的话，就会为自己创建一个新的事务  </p>
+<p>SUPPORTS</p>
+<p>这一事务属性表明，如果业务方法 A 在某个事务范围内被调用，则方法成为事务的一部分。<br>如果业务方法在事务范围外被调用，则方法在没有事务的环境下执行。即当标注了事务传<br>播属性——SUPPORTS 的业务方法在另一个 bean 的业务方法中执行时，如果另一个<br>bean 的业务方法开启了事务，它就会处在事务中执行，如果另一个 bean 的业务方法也没<br>开启事务，那么它也在没有事务的环境中进行  </p>
+<p>MANDATORY</p>
+<p>该属性指定业务方法只能在一个已经存在的事务中执行，业务方法不能发起自己的事务。<br>如果业务方法在没有事务的环境下调用，容器就会抛出异常。一种比较强硬的方式。  </p>
+<p>REQUIRES_NEW</p>
+<p>该属性表明不管当前是否存在事务，业务方法总会为自己发起一个新的事务。如果方法已<br>经运行在一个事务中，则原有事务会被挂起，新的事务会被创建，直到方法执行结束，新<br>事务才算结束，原先的事务才会恢复执行。  </p>
+<p>NOT_SUPPORTED</p>
+<p>声明方法不需要事务。如果方法没有关联到一个事务，容器不会为它开启事务。如果方法<br>在一个事务中被调用(在其他业务 bean 的方法中被调用了，而其他业务 bean 的方法是开<br>启了事务的)，该事务会被挂起，在方法调用结束后，原先的事务便会恢复执行。  </p>
+<p>NEVER</p>
+<p>声明方法不需要事务。如果方法没有关联到一个事务，容器不会为它开启事务。如果方法<br>在一个事务中被调用(在其他业务 bean 的方法中被调用了，而其他业务 bean 的方法是开<br>启了事务的)，该事务会被挂起，在方法调用结束后，原先的事务便会恢复执行。  </p>
+<p>NESTED</p>
+<p>嵌套事务，如果一个活动的事务存在，则当前方法运行在一个嵌套的事务中。 如果没有<br>活动事务，就创建一个新的事务。它使用了一个单独的事务，这个事务拥有多个可以回滚<br>的保存点。内部事务的回滚不会对外部事务造成影响。外部事务回滚会导致内部事务的回<br>滚。如果被调用的内部方法没有捕获异常，跑出异常也会导致外部事务的回滚。  </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
       <!-- copyright -->
       
     <footer class="article-footer">
@@ -571,6 +803,20 @@
 
     
 
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="Oracle支持的全部索引"><a href="#Oracle支持的全部索引" class="headerlink" title="Oracle支持的全部索引"></a>Oracle支持的全部索引</h2><h2 id="MySQL支持的全部索引"><a href="#MySQL支持的全部索引" class="headerlink" title="MySQL支持的全部索引"></a>MySQL支持的全部索引</h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
     
       <!-- copyright -->
       

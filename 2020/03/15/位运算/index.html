@@ -90,6 +90,36 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p>为什么要开始学习位运算呢？是因为来自于JDK源码中HashMap的hash方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以决定好好看看位运算的相关概念。</p>
+<p>X &amp; 1==1 OR ==0</p>
+<p>X=X&amp;(X-1)     清零最低位的1</p>
+<p>X &amp; -X 得到最低位的1</p>
+<p>其实选择这些位操作是为了更快</p>
+<blockquote>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/sx729034738/article/details/69569055" target="_blank" rel="noopener">https://blog.csdn.net/sx729034738/article/details/69569055</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">

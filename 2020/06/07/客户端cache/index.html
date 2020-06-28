@@ -90,6 +90,40 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="客户端本地缓存"><a href="#客户端本地缓存" class="headerlink" title="客户端本地缓存"></a>客户端本地缓存</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般在现在的开发过程中，除去Redis这种集中式缓存集群之外，作为服务端提供者也可以使用本地JVM缓存来进行多级缓存的设置和单机服务端缓存的设置。</p>
+<h2 id="常用技术选型"><a href="#常用技术选型" class="headerlink" title="常用技术选型"></a>常用技术选型</h2><p>JDK中的ConcurrentMap，Ehcache，Guava Cache，除此之外，Spring Cache作为缓存服务提供标准的一个标准接口</p>
+<h3 id="传统同步Map"><a href="#传统同步Map" class="headerlink" title="传统同步Map"></a>传统同步Map</h3><p>传统同步Map保证了线程安全性，但是没有淘汰策略，也没有内存管理的能力，而且也没有虚拟机重启时恢复能力。所以除非对于一致性完全不高，并且容量较低的情况下我们才是用传统同步Map。</p>
+<h3 id="Ehcache"><a href="#Ehcache" class="headerlink" title="Ehcache"></a>Ehcache</h3><ul>
+<li>多级缓存策略</li>
+<li>缓存数据可以持久化内存</li>
+<li>缓存数据在虚拟机重启的过程中从磁盘写入内存</li>
+<li>可以支持事件监听和报警</li>
+<li>多机可以通过RMI或者接口的形式构成缓存集群</li>
+</ul>
+<h3 id="Guava-Cache"><a href="#Guava-Cache" class="headerlink" title="Guava Cache"></a>Guava Cache</h3><h3 id="Spring-Cache"><a href="#Spring-Cache" class="headerlink" title="Spring Cache"></a>Spring Cache</h3><h2 id="JSR107缓存规范"><a href="#JSR107缓存规范" class="headerlink" title="JSR107缓存规范"></a>JSR107缓存规范</h2><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://q.cnblogs.com/q/111220/" target="_blank" rel="noopener">Spring Cache中的常见问题</a></p>
+<p><a href="https://blog.csdn.net/weixin_44488164/article/details/89479170" target="_blank" rel="noopener">Spring Cache中如何使用多个参数作为缓存的KEY</a></p>
+<p><a href="https://blog.csdn.net/fireofjava/article/details/48913335" target="_blank" rel="noopener">Spring EL表达式生成缓存中的Key</a></p>
+<p><a href="https://blog.csdn.net/xiewenfeng520/article/details/84864120" target="_blank" rel="noopener">Spring Cache注解的基本介绍</a></p>
+<p><a href="https://www.cnblogs.com/MagicAsa/p/10756331.html" target="_blank" rel="noopener">JSR107规范博客</a></p>
+<p><a href="https://www.jcp.org/en/jsr/detail?id=107" target="_blank" rel="noopener">JSR107官方特性</a></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">

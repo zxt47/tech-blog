@@ -90,6 +90,39 @@
     
 
     
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="基本的SQL和复杂的SQL"><a href="#基本的SQL和复杂的SQL" class="headerlink" title="基本的SQL和复杂的SQL"></a>基本的SQL和复杂的SQL</h1><h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><p>内连接即最常见的等值连接</p>
+<p>例如下面的SQL：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>* <span class="keyword">from</span> [<span class="keyword">Class</span>] c,[Student] s <span class="keyword">where</span> c.ClassID=s.StudentClassID</span><br></pre></td></tr></table></figure>
+
+<p>这样出来的就是隐式的内连接，没有INNER JOIN，行成的中间表为两个表的笛卡尔积；</p>
+<h3 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h3><p>笛卡尔积是指在数学中，两个集合X和Y的笛卡尓积（Cartesian product），又称直积，表示为X × Y，第一个对象是X的成员而第二个对象是Y的所有可能有序对的其中一个成员。假设集合A={a, b}，集合B={0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}。</p>
+<h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>外连接分为左外连接和右外连接和全外连接；</p>
+<h3 id="SQL92和SQL99的标准"><a href="#SQL92和SQL99的标准" class="headerlink" title="SQL92和SQL99的标准"></a>SQL92和SQL99的标准</h3><blockquote>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
+<p><a href="http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html" target="_blank" rel="noopener">http://www.blogjava.net/hello-yun/archive/2011/04/08/347890.html</a></p>
+<p><a href="https://blog.csdn.net/qq_35952082/article/details/60323096" target="_blank" rel="noopener">https://blog.csdn.net/qq_35952082/article/details/60323096</a></p>
+<p><a href="https://blog.csdn.net/plg17/article/details/78758593" target="_blank" rel="noopener">https://blog.csdn.net/plg17/article/details/78758593</a></p>
+<p><a href="https://www.cnblogs.com/bluedeblog/p/6654065.html" target="_blank" rel="noopener">https://www.cnblogs.com/bluedeblog/p/6654065.html</a></p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
       <!-- copyright -->
       
         <div class="declare">
