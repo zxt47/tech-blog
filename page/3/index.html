@@ -72,169 +72,6 @@
     
     
     
-    <article id="post-Docker-And-K8S" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/05/Docker-And-K8S/"
-    >Docker And K8S</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/05/Docker-And-K8S/" class="article-date">
-  <time datetime="2020-03-05T13:20:47.000Z" itemprop="datePublished">2020-03-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker ps</span><br><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">//删除镜像</span><br><span class="line">docker rmi</span><br><span class="line">docker rmi $(docker images | grep ``<span class="string">"^"</span>` `| awk ``<span class="string">"&#123;print $3&#125;"</span>``)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
-
-<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>占位符</p>
-<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>容器编排系统</p>
-<h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
-<p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
-<p>和Kubernetes的区别：</p>
-<p><img src="OpenShift%E6%9E%B6%E6%9E%84.jpg" alt="OpenShift-3"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>使用Docker能够将程序的运行时及其它依赖环境提取出来形成一个隔离的运行环境——image，实现了应用程序的容器化运行。而Kubernetes能够管理和编排已经容器化了的应用，提供容器化应用的部署、扩展和管理等功能。OpenShift在Kubernetes容器管理的基础上，整合了应用程序的生命周期管理，包括image的编译，持续集成，部署和更新等功能。如果仅限于了解和使用，上面这些信息对我来说就足够了，接下来的时间还是回到正文的翻译中去吧。</strong></p>
-<blockquote>
-<p>参考资料：</p>
-<p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
-<p><a href="https://linoxide.com/linux-how-to/dockerfile-create-docker-container/" target="_blank" rel="noopener">https://linoxide.com/linux-how-to/dockerfile-create-docker-container/</a></p>
-<p><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php" target="_blank" rel="noopener">http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php</a></p>
-<p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Docker" target="_blank" rel="noopener">https://cyc2018.github.io/CS-Notes/#/notes/Docker</a></p>
-<p>//推荐</p>
-<p><a href="https://yeasy.gitbooks.io/docker_practice/introduction/why.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/introduction/why.html</a></p>
-<p>官方网站</p>
-<p><a href="https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf" target="_blank" rel="noopener">https://access.redhat.com/documentation/zh-cn/openshift_container_platform/4.3/pdf/applications/OpenShift_Container_Platform-4.3-Applications-zh-CN.pdf</a></p>
-<p><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/" target="_blank" rel="noopener">https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-RPC" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/03/RPC/"
-    >RPC</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/03/RPC/" class="article-date">
-  <time datetime="2020-03-03T13:55:00.000Z" itemprop="datePublished">2020-03-03</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>RPC的全拼叫做Remote Procedure Call，远程过程调用；RPC的最大特点就是可以让我们像调用本地方法一样发起远程调用。做任何事情都应该  Start with Why，那我们就先来说说为什么要学习 RPC。要回答这个问题，我们就得先考虑下 RPC 的实际应用场景。说到 RPC，可能你的第一反应就是“微服务”。RPC 最大的特点就是可以让我们像调用本地一样发起远程调用，这一特点常常会让人感觉 RPC 就是为“微服务”或 SOA 而生的。现在的大多数应用系统发展到一定规模之后，都会向“微服务化”演进，演进后的大型应用系统也的确是由一个个“微服务”组成的。我们可以说 RPC 是“微服务”的基础，这一点是毋庸置疑的。现在我们就可以反过来想这样一个问题——RPC 是不是只应用在“微服务”中呢？</p>
-<p>当然不是，只要涉及到网络通信，我们就可能用到 RPC。一起看这样两个例子。</p>
-<p>例 1：大型分布式应用系统可能会依赖消息队列、分布式缓存、分布式数据库以及统一配置中心等，应用程序与依赖的这些中间件之间都可以通过 RPC 进行通信。比如 etcd，它作为一个统一的配置服务，客户端就是通过 gRPC 框架与服务端进行通信的。</p>
-<p>例 2：我们经常会谈到的容器编排引擎 Kubernetes，它本身就是分布式的，Kubernetes 的 kube-apiserver 与整个分布式集群中的每个组件间的通讯，都是通过 gRPC 框架进行的。</p>
-<p>在我看来，RPC 是解决分布式系统通信问题的一大利器。分布式系统中的网络通信一般都会采用四层的 TCP 协议或七层的 HTTP 协议，在我的了解中，前者占大多数，这主要得益于 TCP 协议的稳定性和高效性。网络通信说起来简单，但实际上是一个非常复杂的过程，这个过程主要包括：对端节点的查找、网络连接的建立、传输数据的编码解码以及网络连接的管理等等，每一项都很复杂。你可以想象一下，在搭建一个复杂的分布式系统过程中，如果开发人员在编码时要对每个涉及到网络通信的逻辑都进行一系列的复杂编码，这将是件多么恐怖的事儿。所以说，网络通信是搭建分布式系统的一个大难题，是一点不为过的，我们必须给予足够的重视。而 RPC 对网络通信的整个过程做了完整包装，在搭建分布式系统时，它会使网络通信逻辑的开发变得更加简单，同时也会让网络通信变得更加安全可靠。现在你是不是感觉到学好 RPC 是很有必要的？</p>
-<p>说起来也特别简单。当我们认识到，使用 RPC 就可以像调用本地一样发起远程调用，用它可以解决通信问题，这时候我们肯定要去学序列化、编解码以及网络传输这些内容。把这些内容掌握后，你就会发现，原来这些只是 RPC 的基础，RPC 还有更吸引人的点，它真正强大的地方是它的治理功能，比如<strong>连接管理、健康检测、负载均衡、优雅启停机、异常重试、业务分组以及熔断限流</strong>等等。突然间，你会感觉自己走进了一个新世界，这些内容会成为你今后学习 RPC 的重点和难点。</p>
-<blockquote>
-<p>参考资料</p>
-<p><a href="https://www.cnblogs.com/findbetterme/p/11200999.html" target="_blank" rel="noopener">https://www.cnblogs.com/findbetterme/p/11200999.html</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-基本的SQL和复杂的SQL" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -812,6 +649,182 @@
 
       
       <h2 id="Oracle支持的全部索引"><a href="#Oracle支持的全部索引" class="headerlink" title="Oracle支持的全部索引"></a>Oracle支持的全部索引</h2><h2 id="MySQL支持的全部索引"><a href="#MySQL支持的全部索引" class="headerlink" title="MySQL支持的全部索引"></a>MySQL支持的全部索引</h2>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Vertx介绍" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/"
+    >Vertx介绍</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/21/Vertx%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time datetime="2020-02-21T13:08:12.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="1-Vertx介绍"><a href="#1-Vertx介绍" class="headerlink" title="1.Vertx介绍"></a>1.Vertx介绍</h1><h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>为什么要开一个关于Vertx的介绍呢，是因为最近在转公司的微服务平台的时候，发现使用了大量的Netty相关的技术，但是后来发现从Netty的ChannelHandler的过程中公司使用了新的框架，Vertx；在代码中创建了一个VertxHandler；这提起来我的兴趣，为什么这里要设置一个VertxHandler呢？而不是选择属于Netty的其他HTTP Handler呢？所以我们讲一下什么是Vertx？如果对Netty感兴趣的话，欢迎看我的其他专栏-其他专栏会讲跟Netty相关的知识；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Netty中的AbstractChannelHandlerContext</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeChannelRead</span><span class="params">(Object msg)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.invokeHandler()) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ((ChannelInboundHandler)<span class="keyword">this</span>.handler()).channelRead(<span class="keyword">this</span>, msg);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">this</span>.notifyHandlerException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fireChannelRead(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公司自己实现的VertxHandler，可以看到是继承了ChannelDuplexHandler的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">VertxHandler</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">ConnectionBase</span>&gt; <span class="keyword">extends</span> <span class="title">ChannelDuplexHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Handler&lt;Object&gt; NULL_HANDLER = (m) -&gt; &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Function&lt;ChannelHandlerContext, C&gt; connectionFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ContextInternal context;</span><br><span class="line">    <span class="keyword">private</span> C conn;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; addHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; removeHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;Object&gt; messageHandler;</span><br></pre></td></tr></table></figure>
+
+<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>Netty的HTTP:<a href="https://www.cnblogs.com/luxiaoxun/p/3959450.html" target="_blank" rel="noopener">https://www.cnblogs.com/luxiaoxun/p/3959450.html</a></p>
+<p>Baledung:<a href="https://www.baeldung.com/vertx" target="_blank" rel="noopener">https://www.baeldung.com/vertx</a></p>
+<p><a href="https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers" target="_blank" rel="noopener">https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers</a></p>
+<p><a href="https://stackoverflow.com/questions/49746420/how-vertx-handlers-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/49746420/how-vertx-handlers-work</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-HTTP请求和响应报文" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/18/HTTP%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87/"
+    >HTTP请求和响应报文</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/18/HTTP%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87/" class="article-date">
+  <time datetime="2020-02-18T14:01:59.000Z" itemprop="datePublished">2020-02-18</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="HTTP请求和响应报文"><a href="#HTTP请求和响应报文" class="headerlink" title="HTTP请求和响应报文"></a>HTTP请求和响应报文</h1><h2 id="Http-Request"><a href="#Http-Request" class="headerlink" title="Http Request"></a>Http Request</h2><p><img src="HTTP%5CHTTP_RequestMessageExample.png" alt="HTTP_RequestMessageExample"></p>
+<h2 id="Http-Response"><a href="#Http-Response" class="headerlink" title="Http Response"></a>Http Response</h2><p><img src="HTTP%5CHTTP_ResponseMessageExample.png" alt="HTTP_ResponseMessageExample"></p>
+<h2 id="浏览器从接收到一个URL，到最后的返回经过了什么？"><a href="#浏览器从接收到一个URL，到最后的返回经过了什么？" class="headerlink" title="浏览器从接收到一个URL，到最后的返回经过了什么？"></a>浏览器从接收到一个URL，到最后的返回经过了什么？</h2><p>一道非常经典的面试题目，讲述的其实是前端和后端一条完整的链路：</p>
+<p><strong>1、在浏览器地址栏中输入URL</strong></p>
+<p>  <strong>2、DNS域名解析，获得域名相对应的IP地址。</strong></p>
+<p>​     当我们在浏览器输入如同<a href="http://www.baidu.com的时候，其实这些网站的名字都是微克简化人们的记忆来命名的" target="_blank" rel="noopener">www.baidu.com的时候，其实这些网站的名字都是微克简化人们的记忆来命名的</a> ，计算机其实并不认识这个东西。浏览器只认识IP地址，所以当输入域名地址的时候，浏览器首先会从浏览器缓存中是否存在相应的域名、IP对应关系，如果有则向这个IP地址发送请求，如果没有则向系统缓存–路由缓存中查找，如果都没有，再去DNS服务器中找IP。</p>
+<p>  <strong>3、浏览器向服务器发起TCP连接，与浏览器建立TCP三次握手</strong></p>
+<p>  <strong>4、浏览器向服务器发送HTTP请求，请求数据包</strong></p>
+<p>​    与服务器建立了连接后，就可以向服务器发起请求了。发送HTTP请求的过程就是构建HTTP请求报文，并通过TCP协议发送到服务器指定端口（HTTP协议80/8080，HTTPS协议443）。HTTP请求是由三部分组成：请求行、请求报头和请求正文。</p>
+<p>  <strong>5、服务器处理收到的请求</strong></p>
+<p>​    服务器端收到请求后，由web服务器（准确来说应该是HTTP服务器）处理请求，诸如Apache、Ngnix、IIS等。web服务器解析用户请求，知道了要调度哪些资源文件，再通过相应的这些文件处理用户请求和参数，并调用数据库信息 ，最后将结果通过web服务器返回浏览器客户端。</p>
+<p>  <strong>6、返回相应结果至浏览器</strong></p>
+<p>​     HTTP响应报文也是由三部分组成：状态码、响应报头和响应报文。</p>
+<p>​     状态码是由三位数组成，第一个数字定义了响应的类别，且有5中可能值： </p>
+<p>​     <strong>· 1XX</strong>：指示信息，表示请求已接受，继续处理。</p>
+<p>​     <strong>· 2XX</strong>：成功，表示请求已被成功接收、理解、接受。</p>
+<p>​     <strong>· 3XX</strong>：重定向，要完成请求必须进行更进一步的操作。</p>
+<p>​     <strong>· 4XX</strong>：客户端错误，请求有语法错误或无法实现。</p>
+<p>​     <strong>·</strong> <strong>5XX</strong>：服务器端错误，服务器未能实现合法的请求。</p>
+<p>​     常见状态码有：200，204，301，302，304，400，401，404，500</p>
+<p>  <strong>7、关闭TCP连接</strong></p>
+<p>​    为了避免服务器与客户端双方的资源占用和损耗，当双方没有请求或响应传递时，任意一方都可以发起关闭请求。</p>
+<p>  <strong>8、浏览器解析渲染页面</strong></p>
+<p>​    浏览器在收到HTML、CSS、JS文件后，就需要进行渲染。 </p>
+<p>​    浏览器是一个边解析边渲染的过程。首先浏览器解析HTML文件构建DOM树，然后解析CSS文件构建渲染树，等到渲染树构建完成后，浏览器开始布局渲染树并将其绘制到屏幕上。这个过程比较复杂，涉及到两个概念：reflow（回流）和repain（重绘）。DOM节点中的各个元素是以盒模型的形式存在，这些都需要浏览器去计算其位置和大小等，这个过程称为reflow；当盒模型的位置、大小以及其他属性，如颜色、字体等确定下来之后，浏览器便开始绘制内容，这个过程称为repain。页面在首次加载时必然会经历reflow和repain。reflow和repain过程是非常消耗性能的，尤其是在移动设备上，它破坏用户体验，有时会造成页面卡顿。所以我们应该尽可能的减少reflow和repain。</p>
+<p>​    JS的解析是由浏览器中的JS解析引擎完成的。</p>
+<p>​    浏览器在解析过程中，如果遇到请求外部资源时，如图像、JS等。浏览器将重复1-6过程下载该资源。请求过程是异步的，并不会影响HTML文档进行加载，但是当文档加载过程中遇到JS文件，HTML文档会挂起渲染过程，不仅要等到文档中JS文件加载完毕还要等待解析执行完毕，才会继续HTML的渲染过程。原因是因为JS有可能修改DOM结构，这就意味着JS执行完成前，后续所有资源的下载是没有必要的，这就是JS阻塞后续资源下载的根本原因。CSS文件的加载不影响JS文件的加载，但是却会影响JS文件的执行。JS代码执行前浏览器必须保证CSS文件已经下载并加载完毕。</p>
+<p>PS:步骤二的具体过程是：</p>
+<ul>
+<li><strong>浏览器缓存</strong>：浏览器会记录DNS一段时间，因此，只是第一个地方解析DNS请求；</li>
+<li><strong>操作系统缓存</strong>：如果在浏览器缓存中不包含这个记录，则会使用系统调用操作系统，获取操作系统的记录（保证最近的DNS查询缓存）；</li>
+<li><strong>路由器缓存</strong>：如果上述两个步骤均不能成功DNS记录，继续搜索路由器缓存；</li>
+<li><strong>ISP缓存</strong>：若上述均失败，继续向ISP搜索。</li>
+</ul>
+
       
       <!-- reward -->
       
