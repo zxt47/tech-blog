@@ -54,6 +54,10 @@
   <time datetime="2020-02-15T06:53:57.000Z" itemprop="datePublished">2020-02-15</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -97,8 +101,7 @@
       
 
       
-      <p>[TOC]</p>
-<p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
+      <p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
 <h2 id="BIO（阻塞同步）"><a href="#BIO（阻塞同步）" class="headerlink" title="BIO（阻塞同步）"></a>BIO（阻塞同步）</h2><p>下图是BIO中最早的流类图，可以看到都实现了Closeable的接口，基于Stream实现，提供了我们最熟悉的IO功能，同步阻塞通信，在线程读或写时线程一直阻塞在那里；很多时候，人们把Socket,ServerSocket,HttpUrlConnection都分类到阻塞类库里；其中输入流和输出流其实是对字节做操作的，而Reader和Writer则是对字符做操作的；因为字符会存在编解码方式，例如UTF-8和GBK还有ISO-8859-1序列成ByteArray之后肯定是不一样的字节流的。</p>
 <p><img src="IO.png" alt="IO Stream"></p>
 <h3 id="Linux中的BIO实现（JDK5）"><a href="#Linux中的BIO实现（JDK5）" class="headerlink" title="Linux中的BIO实现（JDK5）"></a>Linux中的BIO实现（JDK5）</h3><p>使用的是accept，参考：<a href="https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0" target="_blank" rel="noopener">https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0</a></p>
@@ -211,6 +214,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/IO/" rel="tag">IO</a></li></ul>
+
 
     </footer>
 
