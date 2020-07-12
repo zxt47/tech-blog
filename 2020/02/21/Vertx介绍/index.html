@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">317字</span>
+            <span class="post-count">404字</span>
         </span>
     </span>
 
@@ -106,7 +106,9 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公司自己实现的VertxHandler，可以看到是继承了ChannelDuplexHandler的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">VertxHandler</span>&lt;<span class="title">C</span> <span class="keyword">extends</span> <span class="title">ConnectionBase</span>&gt; <span class="keyword">extends</span> <span class="title">ChannelDuplexHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Handler&lt;Object&gt; NULL_HANDLER = (m) -&gt; &#123;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Function&lt;ChannelHandlerContext, C&gt; connectionFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ContextInternal context;</span><br><span class="line">    <span class="keyword">private</span> C conn;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; addHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;C&gt; removeHandler;</span><br><span class="line">    <span class="keyword">private</span> Handler&lt;Object&gt; messageHandler;</span><br></pre></td></tr></table></figure>
 
-<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><hr>
+<h2 id="什么是Vertx"><a href="#什么是Vertx" class="headerlink" title="什么是Vertx?"></a>什么是Vertx?</h2><p>Vertx是一个工具集，它可以用非阻塞的异步模型来开发响应式和分布式的系统。因为他是一个工具集而不是一个框架，所以你可以像使用其他lib一样通过maven或者gradle引入到你的项目中。</p>
+<p>并且Vertx也支持异步的HTTP客户端访问</p>
+<hr>
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>Netty的HTTP:<a href="https://www.cnblogs.com/luxiaoxun/p/3959450.html" target="_blank" rel="noopener">https://www.cnblogs.com/luxiaoxun/p/3959450.html</a></p>
 <p>Baledung:<a href="https://www.baeldung.com/vertx" target="_blank" rel="noopener">https://www.baeldung.com/vertx</a></p>
 <p><a href="https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers" target="_blank" rel="noopener">https://stackoverflow.com/questions/14390322/how-to-get-post-form-data-using-vertx-handlers</a></p>

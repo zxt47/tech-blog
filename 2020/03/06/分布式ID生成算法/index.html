@@ -61,7 +61,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">129字</span>
+            <span class="post-count">130字</span>
         </span>
     </span>
 
@@ -98,7 +98,7 @@
 
       
       <h1 id="分布式ID生成方案"><a href="#分布式ID生成方案" class="headerlink" title="分布式ID生成方案"></a>分布式ID生成方案</h1><p>最近有人开始问我分布式ID的生成问题，我们现在主要使用的是UUID生成方案，但是UUID的问题是冲突虽然比较小，但是他的字符串占用的空间比较大，如果是UTF-8编码的话，就需要占用32*3=96个字节；而且生成的ID太过于随机，完全不是人读的，而且没有递增，如果要按前后顺序排序的话，基本不可能；</p>
-
+<h2 id="SnowFlake"><a href="#SnowFlake" class="headerlink" title="SnowFlake"></a>SnowFlake</h2><h2 id="Leaf"><a href="#Leaf" class="headerlink" title="Leaf"></a>Leaf</h2>
       
       <!-- reward -->
       
@@ -174,6 +174,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag">分布式</a></li></ul>
+
 
     </footer>
 

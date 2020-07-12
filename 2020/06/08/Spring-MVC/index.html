@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">288字</span>
+            <span class="post-count">341字</span>
         </span>
     </span>
 
@@ -109,7 +109,7 @@
 <p>负责进行模型的展示，一般就是我们见到的用户界面，客户想看到的东西。</p>
 <p>Controller(控制器)：</p>
 <p>接收用户请求，委托给模型进行处理(状态改变)，处理完毕后把返回的模型数据返回给视图，由视图负责展示。因此我们可以把控制器理解为一个调度员。</p>
-<h2 id="Spring-MVC流程"><a href="#Spring-MVC流程" class="headerlink" title="Spring MVC流程"></a>Spring MVC流程</h2><p>ServletContextListener和ContextLoaderListener</p>
+<h2 id="Spring-MVC流程"><a href="#Spring-MVC流程" class="headerlink" title="Spring MVC流程"></a>Spring MVC流程</h2><p>ServletContextListener和ContextLoaderListener是两个重要组成部分；其中的ServletContextListener是javax.servlet的组成部分，使用ServletContextListener接口，开发者能够在为客户端请求提供服务之前向ServletContext中添加任意的对象；</p>
 <h2 id="Filter和Interceptor"><a href="#Filter和Interceptor" class="headerlink" title="Filter和Interceptor"></a>Filter和Interceptor</h2><p>Spring中是没有Filter的概念的，Spring中只有Interceptor的概念，类似org.aopalliance.intercept.Interceptor这一类中的介绍，但是Spring MVC中实现这一类型的则是来自于org.springframework.web.servlet.HandlerInterceptor；</p>
 <p>参考资料</p>
 <p><a href="https://www.jianshu.com/p/3c94d7e76998" target="_blank" rel="noopener">https://www.jianshu.com/p/3c94d7e76998</a></p>
@@ -199,6 +199,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/tech-blog/2020/07/10/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            分库分表
+          
+        </div>
+      </a>
     
     
       <a href="/tech-blog/2020/06/08/MySQL-Basic/" class="article-nav-link">

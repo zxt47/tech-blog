@@ -54,6 +54,10 @@
   <time datetime="2020-02-27T13:13:27.000Z" itemprop="datePublished">2020-02-27</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -61,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">374字</span>
+            <span class="post-count">386字</span>
         </span>
     </span>
 
@@ -110,6 +114,7 @@
 <h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>直接内存是在NIO中主要使用的，目的是为了提升NIO在Native堆和Java堆中互相切换的开销</p>
 <h3 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h3><p>Thread Local Allocation Buffer，每个线程拥有的一小部分，一般是在分配对象的时候，除去经过逃逸分析可以解决在栈上分配的问题之外，还支持在线程私有缓冲中分配对象。之后再考虑是在老年代还是Eden区域分配；</p>
 <h4 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h4><p>基础类 Object 的一个方法，保证对象在被垃圾收集前完成特定的资源回收。由于 finalize 执行时间不确定且可能造成程序死锁、拖慢垃圾收集等问题，Java 9 中将改方法废弃.</p>
+<p>调用finalize和System.gc方法不一定立即GC</p>
 <p>优化：逐步用Cleaner来替换调原有的finalize实现。</p>
 <blockquote>
 <p>参考资料</p>
@@ -191,6 +196,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/JVM/" rel="tag">JVM</a></li></ul>
+
 
     </footer>
 

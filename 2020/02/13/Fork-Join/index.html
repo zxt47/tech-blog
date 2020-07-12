@@ -116,7 +116,7 @@
 <p>F/J框架的实现非常复杂，内部大量运用了位操作和无锁算法，撇开这些实现细节不谈，该框架主要涉及<br>三大核心组件： ForkJoinPool （线程池）、 ForkJoinTask （任务）、 ForkJoinWorkerThread （工<br>作线程），外加 WorkQueue （任务队列）：<br>ForkJoinPool：ExecutorService的实现类，负责工作线程的管理、任务队列的维护，以及控制整<br>个任务调度流程；<br>ForkJoinTask：Future接口的实现类，fork是其核心方法，用于分解任务并异步执行；而join方<br>法在任务结果计算完毕之后才会运行，用来合并或返回计算结果；<br>ForkJoinWorkerThread：Thread的子类，作为线程池中的工作线程（Worker）执行任务；<br>WorkQueue：任务队列，用于保存任务；  </p>
 <h2 id="Why-using-it"><a href="#Why-using-it" class="headerlink" title="Why using it"></a>Why using it</h2><p>分治法本身就是缩小问题规模的一种方式。</p>
 <p>分治的定义：把一个复杂的问题分解成多个相似的子问题，然后再把子问题分解成更小的子问题，直到子问题简单到可以直接求解</p>
-
+<h3 id="分治法和动态规划的区别"><a href="#分治法和动态规划的区别" class="headerlink" title="分治法和动态规划的区别"></a>分治法和动态规划的区别</h3>
       
       <!-- reward -->
       
