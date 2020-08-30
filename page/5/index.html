@@ -72,6 +72,115 @@
     
     
     
+    <article id="post-IO" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/02/15/IO/"
+    >IO流</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/02/15/IO/" class="article-date">
+  <time datetime="2020-02-15T06:53:57.000Z" itemprop="datePublished">2020-02-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>今天开始总结一下Java中IO流相关的信息；因为最近准备业余时间学习Netty，那么在学习Netty之前需要学习IO；</p>
+<h2 id="BIO（阻塞同步）"><a href="#BIO（阻塞同步）" class="headerlink" title="BIO（阻塞同步）"></a>BIO（阻塞同步）</h2><p>下图是BIO中最早的流类图，可以看到都实现了Closeable的接口，基于Stream实现，提供了我们最熟悉的IO功能，同步阻塞通信，在线程读或写时线程一直阻塞在那里；很多时候，人们把Socket,ServerSocket,HttpUrlConnection都分类到阻塞类库里；其中输入流和输出流其实是对字节做操作的，而Reader和Writer则是对字符做操作的；因为字符会存在编解码方式，例如UTF-8和GBK还有ISO-8859-1序列成ByteArray之后肯定是不一样的字节流的。</p>
+<p><img src="IO.png" alt="IO Stream"></p>
+<h3 id="Linux中的BIO实现（JDK5）"><a href="#Linux中的BIO实现（JDK5）" class="headerlink" title="Linux中的BIO实现（JDK5）"></a>Linux中的BIO实现（JDK5）</h3><p>使用的是accept，参考：<a href="https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0" target="_blank" rel="noopener">https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0</a></p>
+<h3 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h3><p>JDK6和以后的版本采用的是poll，参考：<a href="https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0" target="_blank" rel="noopener">https://juejin.im/post/5ec75061f265da770d3daa23?utm_source=gold_browser_extension#heading-0</a></p>
+<h2 id="NIO（同步非阻塞IO）"><a href="#NIO（同步非阻塞IO）" class="headerlink" title="NIO（同步非阻塞IO）"></a>NIO（同步非阻塞IO）</h2><p>大名鼎鼎的NIO,Buffer和Selector和Channel都来自于1.4提出的NIO包;</p>
+<p>NIO主要包含Buffer,Channel和Selector；</p>
+<ul>
+<li><p>Buffer，高效的数据容器，除了布尔类型，所有原始数据类型都有相应的 Buffer 实现。</p>
+</li>
+<li><p>Channel，类似在 Linux 之类操作系统上看到的文件描述符，是 NIO 中被用来支持批量式 IO 操作的一种抽象。File 或者 Socket，通常被认为是比较高层次的抽象，而 Channel 则是更加操作系统底层的一种抽象，这也使得 NIO 得以充分利用现代操作系统底层机制，获得特定场景的性能优化，例如，DMA（Direct Memory Access）等。不同层次的抽象是相互关联的，我们可以通过 Socket 获取 Channel，反之亦然。</p>
+</li>
+<li><p>Selector，是 NIO 实现多路复用的基础，它提供了一种高效的机制，可以检测到注册在 Selector 上的多个 Channel 中，是否有 Channel 处于就绪状态，进而实现了单线程对多 Channel 的高效管理。</p>
+</li>
+<li><p>Chartset，提供 Unicode 字符串定义，NIO 也提供了相应的编解码器等，例如，通过下面的方式进行字符串到 ByteBuffer 的转换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOServer</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> (Selector selector = Selector.open();</span><br><span class="line">             ServerSocketChannel serverSocket = ServerSocketChannel.open();) &#123;<span class="comment">// 创建Selector和Channel</span></span><br><span class="line">            serverSocket.bind(<span class="keyword">new</span> InetSocketAddress(InetAddress.getLocalHost(), <span class="number">8888</span>));</span><br><span class="line">            serverSocket.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">            <span class="comment">// 注册到Selector，并说明关注点</span></span><br><span class="line">            serverSocket.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                selector.select();<span class="comment">// 阻塞等待就绪的Channel，这是关键点之一</span></span><br><span class="line">                Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; iter = selectedKeys.iterator();</span><br><span class="line">                <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">                    SelectionKey key = iter.next();</span><br><span class="line">                   <span class="comment">// 生产系统中一般会额外进行就绪状态检查</span></span><br><span class="line">                    sayHelloWorld((ServerSocketChannel) key.channel());</span><br><span class="line">                    iter.remove();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sayHelloWorld</span><span class="params">(ServerSocketChannel server)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> (SocketChannel client = server.accept();) &#123;          client.write(Charset.defaultCharset().encode(<span class="string">"Hello world!"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">// 省略了与前面类似的main</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>首先，通过 Selector.open() 创建一个 Selector，作为类似调度员的角色。</p>
+</li>
+<li><p>然后，创建一个 ServerSocketChannel，并且向 Selector 注册，通过指定 SelectionKey.OP_ACCEPT，告诉调度员，它关注的是新的连接请求。注意，为什么我们要明确配置非阻塞模式呢？这是因为阻塞模式下，注册操作是不允许的，会抛出 IllegalBlockingModeException 异常。</p>
+</li>
+<li><p>Selector 阻塞在 select 操作，当有 Channel 发生接入请求，就会被唤醒。</p>
+</li>
+<li><p>在 sayHelloWorld 方法中，通过 SocketChannel 和 Buffer 进行数据操作，在本例中是发送了一段字符串。</p>
+<h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>在UNIX网络编程一书中写到，操作系统内核的网络模型包含五种I/ O模型 </p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>看到一个非常好的例子；</p>
+<p>BIO，快递员通知你有一份快递会在今天送到某某地方，你需要在某某地方一致等待快递员的到来。</p>
+<p>NIO，快递员通知你有一份快递会送到你公司的前台，你需要每隔一段时间去前台询问是否有你的快递。</p>
+<p>AIO，快递员通知你有一份快递会送到你公司的前台，并且前台收到后会给你打电话通知你过来取。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>UNIX网络编程</p>
+<p>我的专栏中的Netty部分和其他相关网络编程相关demo;    </p>
+<p><a href="https://www.cnblogs.com/vathe/p/6690630.html" target="_blank" rel="noopener">https://www.cnblogs.com/vathe/p/6690630.html</a></p>
+<p><a href="https://blog.csdn.net/chen8238065/article/details/53338715" target="_blank" rel="noopener">https://blog.csdn.net/chen8238065/article/details/53338715</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/IO/" rel="tag">IO</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Fork-Join" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 

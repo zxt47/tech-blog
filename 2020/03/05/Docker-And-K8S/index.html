@@ -55,7 +55,7 @@
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/tech-blog/categories/%E2%80%98%E4%BA%91%E6%9C%8D%E5%8A%A1%E2%80%99/">‘云服务’</a>
+    <a class="article-category-link" href="/tech-blog/categories/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</a>
   </div>
 
       
@@ -65,7 +65,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">341字</span>
+            <span class="post-count">414字</span>
         </span>
     </span>
 
@@ -103,7 +103,7 @@
       
       <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="docker指令"><a href="#docker指令" class="headerlink" title="docker指令"></a>docker指令</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">docker ps</span><br><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">//删除镜像</span><br><span class="line">docker rmi</span><br><span class="line">docker rmi $(docker images | grep ``<span class="string">"^"</span>` `| awk ``<span class="string">"&#123;print $3&#125;"</span>``)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
 
-<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>占位符</p>
+<h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>前面我们使用Docker的时候，定义Dockerfile文件完成容器的创建，然后使用docker build和docker run等命令操作容器。然而微服务架构的应用系统一般都包含很多微服务，所以我们通过Docker-Compose来完成一键部署的操作；</p>
 <h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><p>容器编排系统</p>
 <h2 id="OpenShift"><a href="#OpenShift" class="headerlink" title="OpenShift"></a>OpenShift</h2><p>OpenShift在Kubernetes的基础上整合了应用的生命周期管理，包括image的编译，持续集成，部署以及更新。</p>
 <p><img src="OpenShift%E5%AE%9E%E7%8E%B0.jpg" alt="OpenShift-2"></p>
