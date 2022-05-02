@@ -72,6 +72,424 @@
     
     
     
+    <article id="post-MySQL-Basic" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/06/08/MySQL-Basic/"
+    >MySQL Basic</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/06/08/MySQL-Basic/" class="article-date">
+  <time datetime="2020-06-08T07:50:20.000Z" itemprop="datePublished">2020-06-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h1><h2 id="MySQL中一条SQL语句是怎样运行的？"><a href="#MySQL中一条SQL语句是怎样运行的？" class="headerlink" title="MySQL中一条SQL语句是怎样运行的？"></a>MySQL中一条SQL语句是怎样运行的？</h2><p>访问客户端通过连接器执行sql</p>
+<p>分析器解析SQL语句后分解为指令集</p>
+<p>注意此项在高版本的MySQL会被优化-先查询缓存，命中就直接返回结果</p>
+<p>非查询或未命中，进入优化器产生执行计划并选择索引</p>
+<p>执行器执行后返回结果</p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>MySQL中的索引分为唯一索引和前缀索引，从物理角度来说分为聚簇索引和非聚簇索引</p>
+<h3 id="解析执行计划"><a href="#解析执行计划" class="headerlink" title="解析执行计划"></a>解析执行计划</h3>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-客户端cache" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AFcache/"
+    >客户端cache</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AFcache/" class="article-date">
+  <time datetime="2020-06-07T03:28:33.000Z" itemprop="datePublished">2020-06-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="客户端本地缓存"><a href="#客户端本地缓存" class="headerlink" title="客户端本地缓存"></a>客户端本地缓存</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一般在现在的开发过程中，除去Redis这种集中式缓存集群之外，作为服务端提供者也可以使用本地JVM缓存来进行多级缓存的设置和单机服务端缓存的设置。</p>
+<h2 id="常用技术选型"><a href="#常用技术选型" class="headerlink" title="常用技术选型"></a>常用技术选型</h2><p>JDK中的ConcurrentMap，Ehcache，Guava Cache，除此之外，Spring Cache作为缓存服务提供标准的一个标准接口</p>
+<h3 id="传统同步Map"><a href="#传统同步Map" class="headerlink" title="传统同步Map"></a>传统同步Map</h3><p>传统同步Map保证了线程安全性，但是没有淘汰策略，也没有内存管理的能力，而且也没有虚拟机重启时恢复能力。所以除非对于一致性完全不高，并且容量较低的情况下我们才是用传统同步Map。</p>
+<h3 id="Ehcache"><a href="#Ehcache" class="headerlink" title="Ehcache"></a>Ehcache</h3><ul>
+<li>多级缓存策略</li>
+<li>缓存数据可以持久化内存</li>
+<li>缓存数据在虚拟机重启的过程中从磁盘写入内存</li>
+<li>可以支持事件监听和报警</li>
+<li>多机可以通过RMI或者接口的形式构成缓存集群</li>
+</ul>
+<h3 id="Guava-Cache"><a href="#Guava-Cache" class="headerlink" title="Guava Cache"></a>Guava Cache</h3><p>Guava Cache是一个比Ehcache轻量的组件</p>
+<h3 id="Spring-Cache"><a href="#Spring-Cache" class="headerlink" title="Spring Cache"></a>Spring Cache</h3><p>Spring Cache</p>
+<h2 id="JSR107缓存规范"><a href="#JSR107缓存规范" class="headerlink" title="JSR107缓存规范"></a>JSR107缓存规范</h2><p>JSR107是提出的统一的进程内缓存方案，提出了统一的缓存API供各个缓存工具类实现</p>
+<h2 id="缓存一致性保障"><a href="#缓存一致性保障" class="headerlink" title="缓存一致性保障"></a>缓存一致性保障</h2><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://q.cnblogs.com/q/111220/" target="_blank" rel="noopener">Spring Cache中的常见问题</a></p>
+<p><a href="https://blog.csdn.net/weixin_44488164/article/details/89479170" target="_blank" rel="noopener">Spring Cache中如何使用多个参数作为缓存的KEY</a></p>
+<p><a href="https://blog.csdn.net/fireofjava/article/details/48913335" target="_blank" rel="noopener">Spring EL表达式生成缓存中的Key</a></p>
+<p><a href="https://blog.csdn.net/xiewenfeng520/article/details/84864120" target="_blank" rel="noopener">Spring Cache注解的基本介绍</a></p>
+<p><a href="https://www.cnblogs.com/MagicAsa/p/10756331.html" target="_blank" rel="noopener">JSR107规范博客</a></p>
+<p><a href="https://www.jcp.org/en/jsr/detail?id=107" target="_blank" rel="noopener">JSR107官方特性</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/%E7%BC%93%E5%AD%98/" rel="tag">缓存</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Spring-Framework-Bean-初步" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/06/05/Spring-Framework-Bean-%E5%88%9D%E6%AD%A5/"
+    >Spring Framework Bean 初步</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/06/05/Spring-Framework-Bean-%E5%88%9D%E6%AD%A5/" class="article-date">
+  <time datetime="2020-06-05T00:25:14.000Z" itemprop="datePublished">2020-06-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Spring框架中启动过程-Bean启动过程"><a href="#Spring框架中启动过程-Bean启动过程" class="headerlink" title="Spring框架中启动过程-Bean启动过程"></a>Spring框架中启动过程-Bean启动过程</h1><h2 id="BeanDefinition"><a href="#BeanDefinition" class="headerlink" title="BeanDefinition"></a>BeanDefinition</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.context.annotation.AnnotatedBeanDefinitionReader</span><br><span class="line">org.springframework.context.annotation.ClassPathBeanDefinitionScanner</span><br></pre></td></tr></table></figure>
+
+<h2 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.factory.support.DefaultListableBeanFactory</span><br></pre></td></tr></table></figure>
+
+<h2 id="SPI扩展"><a href="#SPI扩展" class="headerlink" title="SPI扩展"></a>SPI扩展</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor</span><br></pre></td></tr></table></figure>
+
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.util.ReflectionUtils</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>附录：一个Spring容器启动的完整DEBUG日志</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-HTTP性能测试工具" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/05/24/HTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"
+    >HTTP性能测试工具</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/05/24/HTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time datetime="2020-05-24T02:10:16.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="HTTP性能测试工具"><a href="#HTTP性能测试工具" class="headerlink" title="HTTP性能测试工具"></a>HTTP性能测试工具</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>什么是HTTP性能测试工具，包含类似于ab(Apache BenchMark工具)，Wrk（只能在Unix环境上使用）这些可以进行性能测试的工具；不会像LoadRunner或者Jmeter那种较重的性能测试工具，ab只需要进行简单的配置就可以直接使用；</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ab工具放在Apache HTTP Server安装包的bin目录下，所以要先安装Apache HTTP Server（以Windows系统为例）。</p>
+<p>到Apache HTTP Server官网下载页面（<a href="https://link.jianshu.com?t=http://httpd.apache.org/download.cgi#apache24" target="_blank" rel="noopener">点击链接</a>），目前最新的版本不提供Windows系统下的安装包，所以用第三方的安装包。点击下图链接：</p>
+<p>选择进入到Apache的Haus，下载之后配置环境变量就可以直接使用了；</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p><img src="E:%5Ctech-blog%5Csource_posts%5CHTTP%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%5Cimage-20200524101537116.png" alt="image-20200524101537116"></p>
+<p>参考文档</p>
+<p><a href="https://www.jianshu.com/p/e3793ae91a62" target="_blank" rel="noopener">https://www.jianshu.com/p/e3793ae91a62</a></p>
+<p><a href="http://httpd.apache.org/docs/current/programs/ab.html" target="_blank" rel="noopener">http://httpd.apache.org/docs/current/programs/ab.html</a></p>
+<p><a href="https://www.cnblogs.com/jave1ove/p/5486427.html" target="_blank" rel="noopener">https://www.cnblogs.com/jave1ove/p/5486427.html</a></p>
+<p><a href="https://www.cnblogs.com/savorboard/p/wrk.html" target="_blank" rel="noopener">https://www.cnblogs.com/savorboard/p/wrk.html</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="bean-Validation" class="article article-type-bean" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/tech-blog/2020/05/19/Validation/"
+    >Validation</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/tech-blog/2020/05/19/Validation/" class="article-date">
+  <time datetime="2020-05-19T13:12:39.000Z" itemprop="datePublished">2020-05-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="Bean-Validate-API"><a href="#Bean-Validate-API" class="headerlink" title="Bean Validate API"></a>Bean Validate API</h1><p>在接口开发中有一种较为方便的对Bean参数进行合法性校验的操作。在Java规范中是作为JSR303和JSR380规范存在的；</p>
+<p>参考文档</p>
+<p><a href="https://www.cnblogs.com/didispace/p/11633661.html" target="_blank" rel="noopener">技术博客</a></p>
+<p><a href="https://blog.csdn.net/f641385712/article/details/97968775" target="_blank" rel="noopener">https://blog.csdn.net/f641385712/article/details/97968775</a></p>
+<p><a href="https://blog.csdn.net/mzh_cn/article/details/80637015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/mzh_cn/article/details/80637015?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
+<p><a href="https://blog.csdn.net/u013815546/article/details/77248003?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/u013815546/article/details/77248003?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.nonecase</a></p>
+<p><a href="https://blog.csdn.net/f641385712/article/details/97270786" target="_blank" rel="noopener">https://blog.csdn.net/f641385712/article/details/97270786</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3OTUzMzcwNw==&amp;mid=2247484396&amp;idx=1&amp;sn=f6b73fbb6dd2d107e5b1bfde16cd6754&amp;chksm=eb470208dc308b1e32fc37b067e74d4a83857e2e966653bd11001726e08b860e9b8823b8029f&amp;scene=126&amp;sessionid=1589765413&amp;key=d0a1cff4a53ee366b6a3b9db4463a81c57f0a31df7c674d69da5c1e68fd9ac41541c57f4ff9aad6d561ed132b7f24e97f92e1a2561906b3375ca9013ffb78ef22da17f8524ed188eb9250016b78895d8&amp;ascene=1&amp;uin=MjIwMjY1NzQ2Mw%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AfSw7wIOssnlM2H1lkDUY0M%3D&amp;pass_ticket=WapZN1mC7IMHiY8PyF4qiSKWo9tWf593g%2F80CUEj2tevTdAHcfeQ97NwcQJIJWww" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI3OTUzMzcwNw==&amp;mid=2247484396&amp;idx=1&amp;sn=f6b73fbb6dd2d107e5b1bfde16cd6754&amp;chksm=eb470208dc308b1e32fc37b067e74d4a83857e2e966653bd11001726e08b860e9b8823b8029f&amp;scene=126&amp;sessionid=1589765413&amp;key=d0a1cff4a53ee366b6a3b9db4463a81c57f0a31df7c674d69da5c1e68fd9ac41541c57f4ff9aad6d561ed132b7f24e97f92e1a2561906b3375ca9013ffb78ef22da17f8524ed188eb9250016b78895d8&amp;ascene=1&amp;uin=MjIwMjY1NzQ2Mw%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AfSw7wIOssnlM2H1lkDUY0M%3D&amp;pass_ticket=WapZN1mC7IMHiY8PyF4qiSKWo9tWf593g%2F80CUEj2tevTdAHcfeQ97NwcQJIJWww</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/%E9%AA%8C%E8%AF%81%E6%80%A7%E6%93%8D%E4%BD%9C/" rel="tag">验证性操作</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Java异常诊断工具" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -458,7 +876,8 @@
       
 
       
-      <h1 id="Dubbo介绍"><a href="#Dubbo介绍" class="headerlink" title="Dubbo介绍"></a>Dubbo介绍</h1>
+      <h1 id="Dubbo介绍"><a href="#Dubbo介绍" class="headerlink" title="Dubbo介绍"></a>Dubbo介绍</h1><p>随着业务的不断发展，不同公司由于业务的增长，开始对服务进行微服务化和分布式化，其中核心组件即RPC组件或者通信组件，在</p>
+
       
       <!-- reward -->
       
@@ -1746,378 +2165,13 @@
 
 </article>
     
-    <article id="post-Spring-JPA" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/28/Spring-JPA/"
-    >Spring JPA</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/28/Spring-JPA/" class="article-date">
-  <time datetime="2020-03-28T13:48:21.000Z" itemprop="datePublished">2020-03-28</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Spring-Data-JPA"><a href="#Spring-Data-JPA" class="headerlink" title="Spring Data JPA"></a>Spring Data JPA</h1><p>OpenSessionInViewInterceptor</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-动态规划" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/20/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"
-    >动态规划</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/20/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="article-date">
-  <time datetime="2020-03-20T12:15:24.000Z" itemprop="datePublished">2020-03-20</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>动态规划（Dynamic Programming）</p>
-<p>0-1背包问题，旅行家问题，割绳子问题</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Java基础" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/19/Java%E5%9F%BA%E7%A1%80/"
-    >Java基础</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/19/Java%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time datetime="2020-03-19T13:42:03.000Z" itemprop="datePublished">2020-03-19</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="基本数据类型的占用"><a href="#基本数据类型的占用" class="headerlink" title="基本数据类型的占用"></a>基本数据类型的占用</h2><p>byte的取值范围为-128~127，占用1个字节（-2的7次方到2的7次方-1） </p>
-<p>short的取值范围为-32768~32767，占用2个字节（-2的15次方到2的15次方-1）</p>
-<p>int的取值范围为（-2147483648~<a href="https://www.baidu.com/s?wd=2147483647&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">2147483647</a>），占用4个字节（-2的31次方到2的31次方-1）</p>
-<p>long的取值范围为（-9223372036854774808~9223372036854774807），占用8个字节（-2的63次方到2的63次方-1）</p>
-<p>float:单精度类型,精度是8位有效数字（其余部分四舍五入），取值范围是10的-38次方到10的38次方，float占用4个字节的存储空间。</p>
-<p>double:双精度类型，精度是17位有效数字，取值范围是10的-308次方到10的308次方，double占用8个字节的存储空间</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-UNIX网络编程" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/15/UNIX%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
-    >UNIX网络编程</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/15/UNIX%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-date">
-  <time datetime="2020-03-15T14:14:16.000Z" itemprop="datePublished">2020-03-15</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/tech-blog/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="网络知识"><a href="#网络知识" class="headerlink" title="网络知识"></a>网络知识</h1><h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h2 id="七层网络模型"><a href="#七层网络模型" class="headerlink" title="七层网络模型"></a>七层网络模型</h2><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><h5 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h5><ul>
-<li>第一次握手：Client将SYN置1，随机产生一个初始序列号seq发送给Server，进入SYN_SENT状态；</li>
-<li>第二次握手：Server收到Client的SYN=1之后，知道客户端请求建立连接，将自己的SYN置1，ACK置1，产生一个acknowledge number=sequence number+1，并随机产生一个自己的初始序列号，发送给客户端；进入SYN_RCVD状态；</li>
-<li>第三次握手：客户端检查acknowledge number是否为序列号+1，ACK是否为1，检查正确之后将自己的ACK置为1，产生一个acknowledge number=服务器发的序列号+1，发送给服务器；进入ESTABLISHED状态；服务器检查ACK为1和acknowledge number为序列号+1之后，也进入ESTABLISHED状态；完成三次握手，连接建立。</li>
-</ul>
-<h5 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h5><ul>
-<li>第一次挥手：Client将FIN置为1，发送一个序列号seq给Server；进入FIN_WAIT_1状态；</li>
-<li>第二次挥手：Server收到FIN之后，发送一个ACK=1，acknowledge number=收到的序列号+1；进入CLOSE_WAIT状态。此时客户端已经没有要发送的数据了，但仍可以接受服务器发来的数据。</li>
-<li>第三次挥手：Server将FIN置1，发送一个序列号给Client；进入LAST_ACK状态；</li>
-<li>第四次挥手：Client收到服务器的FIN后，进入TIME_WAIT状态；接着将ACK置1，发送一个acknowledge number=序列号+1给服务器；服务器收到后，确认acknowledge number后，变为CLOSED状态，不再向客户端发送数据。客户端等待2*MSL（报文段最长寿命）时间后，也进入CLOSED状态。完成四次挥手。</li>
-</ul>
-<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><blockquote>
-<p>参考资料</p>
-<p><a href="https://blog.csdn.net/qzcsu/article/details/72861891?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">https://blog.csdn.net/qzcsu/article/details/72861891?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tech-blog/tags/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" rel="tag">网络知识</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-观察模式" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/tech-blog/2020/03/15/%E8%A7%82%E5%AF%9F%E6%A8%A1%E5%BC%8F/"
-    >观察模式</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/tech-blog/2020/03/15/%E8%A7%82%E5%AF%9F%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-03-15T09:31:17.000Z" itemprop="datePublished">2020-03-15</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>观察者模式一般叫做Observer模式，因为我们这边主要使用的是Java，在Java 1.0中有一个类叫做Observable；可以直接使用。</p>
-<blockquote>
-<p>参考资料</p>
-<p><a href="https://blog.csdn.net/u012250875/article/details/77747878" target="_blank" rel="noopener">https://blog.csdn.net/u012250875/article/details/77747878</a></p>
-</blockquote>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/tech-blog/">上一页</a><a class="page-number" href="/tech-blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/tech-blog/page/3/">3</a><a class="page-number" href="/tech-blog/page/4/">4</a><a class="page-number" href="/tech-blog/page/5/">5</a><a class="extend next" rel="next" href="/tech-blog/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/tech-blog/">上一页</a><a class="page-number" href="/tech-blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/tech-blog/page/3/">3</a><a class="page-number" href="/tech-blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/tech-blog/page/6/">6</a><a class="extend next" rel="next" href="/tech-blog/page/3/">下一页</a>
   </nav>
   
 </section>
@@ -2128,7 +2182,7 @@
     <ul class="list-inline">
       <li>
         &copy;
-        2019-2020
+        2019-2022
         Frank Zhou
       </li>
       <li>
